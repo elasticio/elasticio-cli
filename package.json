@@ -1,0 +1,30 @@
+{
+    "name":"elasticio-cli",
+    "description":"Command-line interface for elastic.io components",
+    "version":"0.0.3",
+
+    "engines":{
+        "node":"0.8.7",
+        "npm":"1.1.49"
+    },
+
+    "bin":{
+        "elasticio":"./bin/elasticio"
+    },
+
+    "main":"./lib/elasticio.js",
+
+    "dependencies":{
+        "underscore":"1.4.2",
+        "commander":"1.0.5",
+        "hbs":"1.0.5",
+        "colors": "0.6.0-1",
+        "express": "2.5.8",
+        "request":"2.11.0",
+        "node-properties-parser":"0.0.2",
+        "async": "0.2.5",
+        "gift" : "0.0.5"
+    },
+
+    "main":"./lib/elasticio.js"
+}

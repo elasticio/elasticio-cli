@@ -1,0 +1,6 @@
+node_modules
+*.gz
+.idea
+lib-cov
+coverage.html
+/*.png
