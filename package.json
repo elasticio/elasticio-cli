@@ -1,7 +1,7 @@
 {
     "name":"elasticio-cli",
     "description":"Command-line interface for elastic.io components",
-    "version":"0.0.3",
+    "version":"0.0.4",
 
     "engines":{
         "node":"0.8.7",
