@@ -7,7 +7,7 @@ npm install elasticio-cli -g
 In order to check if the installation was successful, just type in your terminal:
 
 ````bash
-elasticio
+$ elasticio
 ````
 You should see an output like this:
 
