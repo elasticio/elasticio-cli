@@ -31,7 +31,8 @@ Now let me show you how to execute your component. This is accomplished with tes
 
 Now let's create a test fixture by creating a **test** sub-folder in component's folder and placing a file named **fixture.json** in it, such as shown in the following example. 
 
-<pre>{
+````json
+{
     "fixtures":{
         "success":{
             "msg":{
@@ -50,13 +51,13 @@ Now let's create a test fixture by creating a **test** sub-folder in component's
         }
     }
 }
-</pre>
+````
 
 The content of the file is a JSON object with a single key ``fixtures`` which contains named fixtures. Each fixture defines arguments to be passed to component's _process_ function: a message and configuration objects. 
 
 The only fixture in example above is named _success_. Please note that the  component's configuration may contain sensible data, such as API keys or OAuth tokens. Such data must not be placed inside fixture files because you will push them to your version control system, such as GitHub. Instead they should be replaced by variables using the [Handlebars](http://handlebarsjs.com/) syntax:
 
-````json
+````
 {{variable}}
 ````
 
@@ -72,9 +73,9 @@ The variable values can be store in a file named _elastic.json_ which is located
 
 Now that you have a fixture prepared, you can execute your component as shown below.
 
-<pre>
+````bash
   elasticio cmp:process -p lib/hello_world/hello.js -x success
-</pre>
+````
 
 The command takes 2 arguments:
 * -p: path to the component's file exporting the _process_ function
