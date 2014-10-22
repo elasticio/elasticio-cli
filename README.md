@@ -80,7 +80,7 @@ The content of the file is a JSON object with a single key ``fixtures`` which co
 The only fixture in example above is named _success_. Please note that the  component's configuration may contain sensible data, such as API keys or OAuth tokens. Such data must not be placed inside fixture files because you will push them to your version control system, such as GitHub. Instead they should be replaced by variables using the [Handlebars](http://handlebarsjs.com/) syntax:
 
 ````
-{{variable}}
+"access_token":"{{google_access_token}}"
 ````
 
 The variable values can be store in a file named _elastic.json_ which is located from your user's home directory. For example on my Mac the file is located at _/Users/igor/elastic.json_. This file is again a JSON file containing all the secret values. Soon we will support encryption.
