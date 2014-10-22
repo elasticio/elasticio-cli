@@ -27,9 +27,31 @@ $ elasticio
 
 # Executing component's process function
 
-Now let me show you how to execute your component. This is accomplished with test fixtures. What is a fixture? A fixture is just a JSON object just is used to provide values for component's _process_ function inside a test.
+Executing a component on your local machine is accomplished by ``elasticio cmp:exec`` command. If you execute that command you should see following output:
 
-Now let's create a test fixture by creating a **test** sub-folder in component's folder and placing a file named **fixture.json** in it, such as shown in the following example. 
+````bash
+elasticio cmp:exec
+
+  Usage: elasticio [options] [undefined]
+
+  Options:
+
+    -h, --help            output usage information
+    -p, --path <path>     Path to the component file to be executed. Absolute or relative.
+    -f, --function [key]  Function name to be executed
+    -x, --fixture [key]   Key of the fixture providing configuration for the execution
+````
+
+The most important parameter is ``-p`` which tells the command where to finde the component's node.js module. This files is expeted to export the ``process`` function to be executed. 
+
+The ``process(msg, cfg)`` function takes at least 2 parameters:
+
+* msg: the message to be process by the component
+* cfg: component's configuration
+
+In order to execute your component, we need to know what parameters to pass to its ``process`` function. This is what the fixtures are for. 
+
+Fixtures are defined in a file ``test/fixture.json`` whereby the ``test`` folder is is expected to be located next to ``component.json`` file. Here is an example of a ``fixture.json`` file. called ``fixtures``.
 
 ````json
 {
