@@ -89,7 +89,7 @@ The variable values can be store in a file named _elastic.json_ which is located
 {
     "google_calendar_id":"fubar@acme.org",
     "google_refresh_token":"very-secret-refresh-token",
-    "google_access_token":"very-secret-access-token",
+    "google_access_token":"very-secret-access-token"
 }
 ````
 
