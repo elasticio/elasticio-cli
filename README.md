@@ -30,7 +30,7 @@ $ elasticio
 Executing a component on your local machine is accomplished by ``elasticio cmp:exec`` command. If you execute that command you should see following output:
 
 ````bash
-elasticio cmp:cmp:process
+elasticio cmp:process
 
   Usage: elasticio [options] [undefined]
 
