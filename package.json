@@ -1,29 +1,23 @@
 {
-    "name":"elasticio-cli",
-    "description":"Command-line interface for elastic.io components",
-    "version":"1.0.0",
-
-    "engines":{
-        "node":"0.8.7",
-        "npm":"1.1.49"
+    "name": "elasticio-cli",
+    "description": "Command-line interface for elastic.io components",
+    "version": "1.0.0",
+    "engines": {
+        "node": "0.8.7",
+        "npm": "1.1.49"
     },
-
-    "bin":{
-        "elasticio":"./bin/elasticio"
+    "bin": {
+        "elasticio": "./bin/elasticio"
     },
-
-    "main":"./lib/elasticio.js",
-
-    "dependencies":{
-        "underscore":"1.7.0",
-        "commander":"1.0.5",
-        "hbs":"2.7.0",
+    "main": "./lib/elasticio.js",
+    "dependencies": {
+        "async": "0.9.0",
         "colors": "1.0.3",
-        "express": "2.5.8",
-        "request":"2.11.0",
-        "node-properties-parser":"0.0.2",
-        "async": "0.9.0"
-    },
-
-    "main":"./lib/elasticio.js"
+        "commander": "1.0.5",
+        "express": "^4.16.4",
+        "hbs": "^4.0.1",
+        "node-properties-parser": "0.0.2",
+        "request": "^2.88.0",
+        "underscore": "1.7.0"
+    }
 }
