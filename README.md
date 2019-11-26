@@ -21,7 +21,6 @@ $ elasticio
 
   cmp:process <options>
   cmp:exec <options>
-  oauth2 <options>
 ````
 
 ## Running Actions/Triggers locally
