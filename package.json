@@ -11,21 +11,18 @@
   },
   "main": "./lib/elasticio.js",
   "dependencies": {
-    "async": "0.9.0",
     "colors": "1.0.3",
     "commander": "1.0.5",
-    "express": "^4.17.1",
-    "hbs": "2.7.0",
+    "handlebars": "4.5.3",
     "node-properties-parser": "0.0.2",
-    "request": "^2.88.0",
     "underscore": "1.7.0"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^6.7.1",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "mocha": "^6.2.2",
-    "sinon": "^7.5.0"
+    "chai": "4.2.0",
+    "eslint": "6.7.1",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-import": "2.18.2",
+    "mocha": "6.2.2",
+    "sinon": "7.5.0"
   }
 }
