@@ -53,7 +53,7 @@ elasticio 1.2.0
      [fixture]      Fixture to run against                  optional 
 ````
 
-The only required argument is the `path`, which tells the command where to find the component's action/trigger. This file is expeted to export the ``process`` function to be executed.
+The only required argument is the `path`, which tells the command where to find the component's action/trigger. This file is expected to export the ``process`` function to be executed.
 
 ## Fixtures
 Fixtures are used in testing code as a location to store test instances within a codebase.
