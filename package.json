@@ -6,6 +6,9 @@
     "node": "0.8.7",
     "npm": "1.1.49"
   },
+  "scripts": {
+    "test": "mocha spec/."
+  },
   "bin": {
     "elasticio": "./elasticio.js"
   },
