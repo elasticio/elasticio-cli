@@ -19,21 +19,9 @@ $ elasticio
 
    USAGE
 
-     elasticio <command> [options]
-
-   COMMANDS
-
-     cmp:process <path> [fixture]           Run the process function of an action/trigger
-     cmp:exec <path> [func] [fixture]       Run component actions
-     help <command>                         Display help for a specific command
-
-   GLOBAL OPTIONS
-
-     -h, --help         Display help
-     -V, --version      Display version
-     --no-color         Disable colors
-     --quiet            Quiet mode - only displays warn and error messages
-     -v, --verbose      Verbose mode - will also output debug messages
+  cmp:process <options>
+  cmp:exec <options>
+  oauth2 <options>
 ````
 
 ## Running Actions/Triggers locally
