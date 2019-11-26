@@ -15,9 +15,9 @@
   "main": "./lib/elasticio.js",
   "dependencies": {
     "colors": "1.0.3",
-    "commander": "^4.0.1",
+    "commander": "4.0.1",
     "handlebars": "4.5.3",
-    "inquirer": "^7.0.0",
+    "inquirer": "7.0.0",
     "node-properties-parser": "0.0.2"
   },
   "devDependencies": {
