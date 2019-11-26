@@ -19,8 +19,21 @@ $ elasticio
 
    USAGE
 
-  cmp:process <options>
-  cmp:exec <options>
+     elasticio <command> [options]
+
+   COMMANDS
+
+     cmp:process <path> [fixture]           Run the process function of an action/trigger
+     cmp:exec <path> [func] [fixture]       Run component actions
+     help <command>                         Display help for a specific command
+
+   GLOBAL OPTIONS
+
+     -h, --help         Display help
+     -V, --version      Display version
+     --no-color         Disable colors
+     --quiet            Quiet mode - only displays warn and error messages
+     -v, --verbose      Verbose mode - will also output debug messages
 ````
 
 ## Running Actions/Triggers locally
@@ -40,7 +53,7 @@ elasticio 1.2.0
      [fixture]      Fixture to run against                  optional 
 ````
 
-The only required argument is the `path`, which tells the command where to find the component's action/trigger. This file is expected to export the ``process`` function to be executed.
+The only required argument is the `path`, which tells the command where to find the component's action/trigger. This file is expeted to export the ``process`` function to be executed.
 
 ## Fixtures
 Fixtures are used in testing code as a location to store test instances within a codebase.
