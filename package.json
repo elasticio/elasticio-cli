@@ -15,10 +15,10 @@
   "main": "./lib/elasticio.js",
   "dependencies": {
     "colors": "1.0.3",
-    "commander": "1.0.5",
+    "commander": "^4.0.1",
     "handlebars": "4.5.3",
-    "node-properties-parser": "0.0.2",
-    "underscore": "1.7.0"
+    "inquirer": "^7.0.0",
+    "node-properties-parser": "0.0.2"
   },
   "devDependencies": {
     "chai": "4.2.0",
