@@ -14,10 +14,10 @@
   },
   "main": "./lib/elasticio.js",
   "dependencies": {
-    "chalk": "^3.0.0",
-    "commander": "^4.0.1",
+    "chalk": "3.0.0",
+    "commander": "4.0.1",
     "handlebars": "4.5.3",
-    "inquirer": "^7.0.0",
+    "inquirer": "7.0.0",
     "node-properties-parser": "0.0.2"
   },
   "devDependencies": {
