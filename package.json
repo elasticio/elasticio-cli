@@ -1,31 +1,31 @@
 {
   "name": "elasticio-cli",
   "description": "Command-line interface for elastic.io components",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "engines": {
-    "npm": ">= 10",
-    "node": ">= 10"
-  },
-  "scripts": {
-    "test": "mocha spec/."
+    "node": "0.8.7",
+    "npm": "1.1.49"
   },
   "bin": {
     "elasticio": "./elasticio.js"
   },
   "main": "./lib/elasticio.js",
   "dependencies": {
+    "async": "0.9.0",
     "colors": "1.0.3",
-    "commander": "4.0.1",
-    "handlebars": "4.5.3",
-    "inquirer": "7.0.0",
-    "node-properties-parser": "0.0.2"
+    "commander": "1.0.5",
+    "express": "^4.17.1",
+    "hbs": "2.7.0",
+    "node-properties-parser": "0.0.2",
+    "request": "^2.88.0",
+    "underscore": "1.7.0"
   },
   "devDependencies": {
-    "chai": "4.2.0",
-    "eslint": "6.7.1",
-    "eslint-config-airbnb-base": "14.0.0",
-    "eslint-plugin-import": "2.18.2",
-    "mocha": "6.2.2",
-    "sinon": "7.5.0"
+    "chai": "^4.2.0",
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.2",
+    "sinon": "^7.5.0"
   }
 }

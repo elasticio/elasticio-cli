@@ -20,6 +20,7 @@ $ elasticio
 
   cmp:process <options>
   cmp:exec <options>
+  oauth2 <options>
 ````
 
 # Executing component's process function
