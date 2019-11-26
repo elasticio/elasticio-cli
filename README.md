@@ -20,8 +20,6 @@ $ elasticio
 
   cmp:process <options>
   cmp:exec <options>
-  cmp:create
-  lib:create
   oauth2 <options>
 ````
 
