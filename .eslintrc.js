@@ -8,6 +8,5 @@ module.exports = {
   rules: {
     'linebreak-style': 'off',
     "max-classes-per-file": ["error", 2],
-    'object-curly-newline': ["error", { "minProperties": 5 }]
   },
 };
