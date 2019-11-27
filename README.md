@@ -1,4 +1,5 @@
-# Installation
+# Elasticio CLI Tool
+## Installation
 
 ````bash
 npm install elasticio-cli -g
@@ -14,41 +15,59 @@ You should see an output like this:
 ````bash
 $ elasticio
 
-  elastic.io tools 0.0.5
+     elasticio 1.2.0 
 
-  Options:
+   USAGE
 
-  cmp:process <options>
-  cmp:exec <options>
+     elasticio <command> [options]
+
+   COMMANDS
+
+     cmp:process <path> [fixture]           Run the process function of an action/trigger
+     cmp:exec <path> [func] [fixture]       Run component actions
+     help <command>                         Display help for a specific command
+
+   GLOBAL OPTIONS
+
+     -h, --help         Display help
+     -V, --version      Display version
+     --no-color         Disable colors
+     --quiet            Quiet mode - only displays warn and error messages
+     -v, --verbose      Verbose mode - will also output debug messages
 ````
 
-# Executing component's process function
+## Running Actions/Triggers locally
 
-Executing a component on your local machine is accomplished by ``elasticio cmp:exec`` command. If you execute that command you should see following output:
+Executing an action/trigger process on your local machine is accomplished by ``elasticio cmp:process`` command. For any command, running it with the `-h` or `--help` command provides instructions on how to run it. For example, if you execute that command `elasticio cmp:process -h` you should see following output:
 
 ````bash
-elasticio cmp:process
+elasticio 1.2.0 
 
-  Usage: elasticio [options] [undefined]
+   USAGE
 
-  Options:
+     elasticio cmp:process <path> [fixture]
 
-    -h, --help            output usage information
-    -p, --path <path>     Path to the component file to be executed. Absolute or relative.
-    -f, --function [key]  Function name to be executed
-    -x, --fixture [key]   Key of the fixture providing configuration for the execution
+   ARGUMENTS
+
+     <path>         Path to file with process function      required 
+     [fixture]      Fixture to run against                  optional 
 ````
 
-The most important parameter is ``-p`` which tells the command where to finde the component's node.js module. This files is expeted to export the ``process`` function to be executed. 
+The only required argument is the `path`, which tells the command where to find the component's action/trigger. This file is expected to export the ``process`` function to be executed.
 
-The ``process(msg, cfg)`` function takes at least 2 parameters:
+## Fixtures
+Fixtures are used in testing code as a location to store test instances within a codebase.
+
+For example, the ``process(msg, cfg)`` function takes at least 2 parameters:
 
 * msg: the message to be process by the component
 * cfg: component's configuration
 
-In order to execute your component, we need to know what parameters to pass to its ``process`` function. This is what the fixtures are for. 
+In order to execute your component, we need to know what parameters to pass to its ``process`` function. This is what the fixtures are for.
 
-Fixtures are defined in a file ``test/fixture.json`` whereby the ``test`` folder is is expected to be located next to ``component.json`` file. Here is an example of a ``fixture.json`` file. called ``fixtures``.
+Fixtures are defined in a file ``test/fixture.json`` whereby the ``test`` folder is is expected to be located in the root of the component directory, i.e. in the same location as `component.json`.
+
+A `fixtures.json` file has a root fixtures object, and then one or more defined fixtures. Below is an example file:
 
 ````json
 {
@@ -93,9 +112,36 @@ The variable values can be store in a file named _elastic.json_ which is located
 Now that you have a fixture prepared, you can execute your component as shown below.
 
 ````bash
-  elasticio cmp:process -p lib/hello_world/hello.js -x success
+  elasticio cmp:process lib/hello_world/hello.js success
 ````
 
 The command takes 2 arguments:
-* -p: path to the component's file exporting the _process_ function
-* -x: fixture name to be used for component execution
+* path to the component's file exporting the _process_ function
+* fixture name to be used for component execution (optional)
+
+## Template Fixture File
+
+```json
+{
+  "fixtures": {
+    "example": {
+      "cfg": {
+        ...
+      },
+      "msg": {
+        "body": {
+          ...
+        }
+      }
+    },
+    "example2": {
+      "cfg": {
+        ...
+      },
+      "msg": {
+        ...
+      }
+    }
+  }
+}
+```
