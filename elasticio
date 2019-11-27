@@ -1,4 +1,34 @@
 #!/usr/bin/env node
 
-exports.request = require('./lib/elasticio.js');
+const program = require('caporal');
+const fs = require('fs');
+const { runProcess } = require('./lib/executables/process');
+const { runExec } = require('./lib/executables/exec');
 
+const { version } = JSON.parse(fs.readFileSync(`${__dirname}/package.json`, 'utf8'));
+
+program
+  .version(version);
+
+program
+  .command('cmp:process', 'Run the process function of an action/trigger')
+  .argument('<path>', 'Path to component folder')
+  .argument('[fixture]', 'Fixture to run against')
+  .argument('[action]', 'Name of action/trigger to run')
+  .action(async (args) => {
+    const { path, fixture, action } = args;
+    await runProcess(path, fixture, action);
+  });
+
+program
+  .command('cmp:exec', 'Run any exposed function from a file')
+  .argument('<path>', 'Path to component folder')
+  .argument('[fixture]', 'Fixture to run against')
+  .argument('[func]', 'Function name to run')
+  .argument('[action]', 'Name of action/trigger to run')
+  .action(async (args) => {
+    const { path, func, fixture, action } = args;
+    await runExec(path, func, fixture, action);
+  });
+
+program.parse(process.argv);

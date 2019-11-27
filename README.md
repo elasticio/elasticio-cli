@@ -78,12 +78,12 @@ A `fixtures.json` file has a root fixtures object, and then one or more defined 
                 "body":{}
             },
             "cfg":{
-                "calendarId":"{{google_calendar_id}}",
+                "calendarId":"{{GOOGLE_CALENDAR_ID}}",
                 "oauth":{
                     "expires_in":3600,
                     "token_type":"Bearer",
-                    "refresh_token":"{{google_refresh_token}}",
-                    "access_token":"{{google_access_token}}"
+                    "refresh_token":"{{GOOGLE_REFRESH_TOKEN}}",
+                    "access_token":"{{GOOGLE_ACCESS_TOKEN}}"
                 }
             }
         }
@@ -99,15 +99,13 @@ The only fixture in example above is named _success_. Please note that the  comp
 "access_token":"{{google_access_token}}"
 ````
 
-The variable values can be store in a file named _elastic.json_ which is located from your user's home directory. For example on my Mac the file is located at _/Users/igor/elastic.json_. This file is again a JSON file containing all the secret values. Soon we will support encryption.
+The variable values will be taken from the `.env` file stored in your component, in the same folder as `component.json`.
 
-````json
-{
-    "google_calendar_id":"fubar@acme.org",
-    "google_refresh_token":"very-secret-refresh-token",
-    "google_access_token":"very-secret-access-token"
-}
-````
+```bash
+GOOGLE_CALENDAR_ID=fubar@acme.org
+GOOGLE_REFRESH_TOKEN=very-secret-refresh-token
+GOOGLE_ACCESS_TOKEN=very-secret-access-token
+```
 
 Now that you have a fixture prepared, you can execute your component as shown below.
 
