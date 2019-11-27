@@ -7,6 +7,6 @@ module.exports = {
   extends: 'airbnb-base',
   rules: {
     'linebreak-style': 'off',
-    "max-classes-per-file": ["error", 2],
+    "max-classes-per-file": ["error", 3],
   },
 };
