@@ -5,6 +5,7 @@ node_modules
 lib-cov
 coverage.html
 /*.png
+.vscode
 
 .nyc_output/
 coverage/
