@@ -1,0 +1,25 @@
+{
+  "actions": {
+    "basicEmit": {
+      "main": "./lib/actions/basicEmit.js"
+    },
+    "manyEmits": {
+      "main": "./lib/actions/manyEmits.js"
+    },
+    "arrayEmit": {
+      "main": "./lib/actions/arrayEmit.js"
+    },
+    "stringEmit": {
+      "main": "./lib/actions/stringEmit.js"
+    },
+    "invalidEventEmit": {
+      "main": "./lib/actions/invalidEventEmit.js"
+    },
+    "thrownError": {
+      "main": "./lib/actions/thrownError.js"
+    },
+    "returnData": {
+      "main": "./lib/actions/returnData.js"
+    }
+  }
+}
