@@ -1,8 +1,10 @@
 {
   "title": "My component.json",
   "credentials": {
-    "username": {
-      "viewClass": "abc"
+    "fields": {
+      "username": {
+        "viewClass": "TextFieldView"
+      }
     }
   },
   "actions": {

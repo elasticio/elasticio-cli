@@ -35,5 +35,6 @@ describe('Emitter tests', () => {
     expect(consoleStub.getCall(4).lastArg).to.be.equal('Fatal: Hello');
     logger.trace('Hello');
     expect(consoleStub.getCall(5).lastArg).to.be.equal('Trace: Hello');
+    consoleStub.restore();
   });
 });
