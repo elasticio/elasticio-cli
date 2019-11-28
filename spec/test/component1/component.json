@@ -1,0 +1,16 @@
+{
+  "title": "My component.json",
+  "credentials": {
+    "fields": {
+      "username": {
+        "viewClass": "TextFieldView"
+      }
+    }
+  },
+  "actions": {
+    "action1": {
+      "main": "here",
+      "title": "action1"
+    }
+  }
+}

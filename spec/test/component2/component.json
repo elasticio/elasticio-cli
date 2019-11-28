@@ -1,0 +1,48 @@
+{
+  "title": "My component.json",
+  "credentials": {
+    "username": {
+      "viewClass": "abc"
+    }
+  },
+  "actions": {
+    "action1": {
+      "main": "../../scope.spec.js",
+      "dynamicMetadata": true
+    },
+    "action2": {
+      "main": "../action.js",
+      "title": "action2",
+      "description": "action2",
+      "dynamicMetadata": true
+    },
+    "action3": {
+      "main": "../action2.js",
+      "title": "action3",
+      "description": "action3",
+      "dynamicMetadata": true
+    },
+    "action4": {
+      "main": "../action2.js",
+      "title": "action4",
+      "description": "action4",
+      "metadata": {}
+    },
+    "action5": {
+      "main": "../action2.js",
+      "title": "action4",
+      "description": "action4",
+      "metadata": {
+        "in": "../schema.json",
+        "out": "../schema.json"
+      }
+    }
+  },
+  "triggers": {
+    "trigger1": {
+      "main": "../action.js",
+      "title": "trigger1",
+      "metadata": {}
+    }
+  }
+}
