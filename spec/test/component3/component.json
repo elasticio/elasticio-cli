@@ -14,6 +14,7 @@
     "2Bad": {
       "main": "../action.js",
       "title": "action1",
+      "description": "description",
       "viewClass": "SelectView",
       "model": "hello",
       "metadata": {
@@ -23,6 +24,7 @@
     "action2": {
       "main": "../action.js",
       "title": "action1",
+      "description": "description",
       "viewClass": "SelectView",
       "model": { "abc": "def" },
       "metadata": "../schema.json"
@@ -30,6 +32,7 @@
     "action3": {
       "main": "../action.js",
       "title": "action1",
+      "description": "description",
       "viewClass": "SelectView",
       "model": { "abc": "def" },
       "metadata": {
@@ -40,6 +43,7 @@
     "action4": {
       "main": "../action.js",
       "title": "action1",
+      "description": "description",
       "viewClass": "SelectView",
       "model": { "abc": "def" },
       "metadata": {
@@ -48,6 +52,7 @@
     },
     "action5": {
       "title": "action1",
+      "description": "description",
       "viewClass": "SelectView",
       "model": { "abc": "def" },
       "metadata": {
@@ -56,6 +61,7 @@
     },
     "action6": {
       "main": "../brokenAction.js",
+      "description": "description",
       "title": "action1",
       "viewClass": "SelectView",
       "model": { "abc": "def" },
@@ -67,6 +73,7 @@
   "triggers": {
     "trigger1": {
       "main": "../action.js",
+      "description": "description",
       "title": "action1",
       "viewClass": "SelectView",
       "model": { "abc": "def" },
@@ -74,6 +81,7 @@
     },
     "trigger2": {
       "main": "../action.js",
+      "description": "description",
       "title": "action1",
       "viewClass": "SelectView",
       "model": { "abc": "def" },

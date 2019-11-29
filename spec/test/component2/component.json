@@ -3,6 +3,7 @@
   "credentials": {
     "fields": {
       "username": {
+        "label": "username",
         "viewClass": "TextFieldView"
       },
       "password": {
