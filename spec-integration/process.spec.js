@@ -52,14 +52,14 @@ describe('runProcess', () => {
     expect(emit4[0]).to.equal('end');
   });
 
-  it('should throw when array data is emitted', async () => {
-    action = 'arrayEmit';
-    await expect(runProcess(COMPONENT_PATH, FIXTURE_KEY, action)).to.eventually.be.rejectedWith('The argument for this event must be a JSON');
+  it('should throw if it tries to serialize a JSON with a circular reference', async () => {
+    action = 'circularJson';
+    await expect(runProcess(COMPONENT_PATH, FIXTURE_KEY, action)).to.eventually.be.rejectedWith('Converting circular structure to JSON');
   });
 
-  it('should throw when string data is emitted', async () => {
-    action = 'stringEmit';
-    await expect(runProcess(COMPONENT_PATH, FIXTURE_KEY, action)).to.eventually.be.rejectedWith('The argument for this event must be a JSON');
+  it('should throw if it tries to serialize a JSON with a BigInt', async () => {
+    action = 'bigIntJson';
+    await expect(runProcess(COMPONENT_PATH, FIXTURE_KEY, action)).to.eventually.be.rejectedWith('Do not know how to serialize a BigInt');
   });
 
   it('should throw when process tries to emit an invalid event name', async () => {

@@ -5,6 +5,9 @@ module.exports = {
     node: true,
   },
   extends: 'airbnb-base',
+  globals: {
+    'BigInt': true,
+  },
   rules: {
     'linebreak-style': 'off',
     "max-classes-per-file": ["error", 3],

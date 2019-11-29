@@ -6,11 +6,11 @@
     "manyEmits": {
       "main": "./lib/actions/manyEmits.js"
     },
-    "arrayEmit": {
-      "main": "./lib/actions/arrayEmit.js"
+    "circularJson": {
+      "main": "./lib/actions/circularJson.js"
     },
-    "stringEmit": {
-      "main": "./lib/actions/stringEmit.js"
+    "bigIntJson": {
+      "main": "./lib/actions/bigIntJson.js"
     },
     "invalidEventEmit": {
       "main": "./lib/actions/invalidEventEmit.js"
