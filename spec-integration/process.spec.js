@@ -75,6 +75,11 @@ describe('runProcess', () => {
     expect(emit1[1].message).to.equal('Thrown');
   });
 
+  it('should exit the process function after emitting an error', async () => {
+    action = 'manyErrors';
+    await expect(runProcess(COMPONENT_PATH, FIXTURE_KEY, action)).to.eventually.be.rejectedWith('First');
+  });
+
   it('should emit return values as data', async () => {
     action = 'returnData';
     await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);

@@ -18,6 +18,9 @@
     "thrownError": {
       "main": "./lib/actions/thrownError.js"
     },
+    "manyErrors": {
+      "main": "./lib/actions/manyErrors.js"
+    },
     "returnData": {
       "main": "./lib/actions/returnData.js"
     }
