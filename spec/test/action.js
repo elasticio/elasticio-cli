@@ -1,3 +1,3 @@
-exports.process = function process() {};
+exports.process = async function process() {};
 
 exports.getMetaModel = function getMetaModel() {};

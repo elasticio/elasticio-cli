@@ -4,6 +4,12 @@
     "fields": {
       "username": {
         "viewClass": "TextFieldView"
+      },
+      "password": {
+        "viewClass": "SelectView"
+      },
+      "API-key": {
+        "label": "key"
       }
     }
   },
@@ -22,10 +28,28 @@
       "main": "../action2.js",
       "title": "action3",
       "description": "action3",
-      "dynamicMetadata": true
+      "dynamicMetadata": true,
+      "fields": {
+        "text": {
+          "label": "hello"
+        },
+        "data": {
+          "label": "hello",
+          "viewClass": "SelectView"
+        },
+        "modelledData": {
+          "label": "hello",
+          "viewClass": "SelectView",
+          "model": "myModel"
+        },
+        "info": {
+          "label": "hello",
+          "viewClass": "TextFieldView"
+        }
+      }
     },
     "action4": {
-      "main": "../action2.js",
+      "main": "../action3.js",
       "title": "action4",
       "description": "action4",
       "metadata": {}
@@ -41,8 +65,13 @@
     }
   },
   "triggers": {
-    "trigger1": {
+    "4BADNAME": {
       "main": "../action.js",
+      "title": "trigger1",
+      "metadata": {}
+    },
+    "trigger2": {
+      "main": "../action3.js",
       "title": "trigger1",
       "metadata": {}
     }

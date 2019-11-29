@@ -5,7 +5,7 @@
       "viewClass": "TextFieldView"
     }
   },
-  "actions": {
+  "triggers": {
     "action1": {
       "main": "here",
       "title": "action1"
