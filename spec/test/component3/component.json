@@ -1,0 +1,24 @@
+{
+  "title": "My component.json",
+  "credentials": {
+    "fields": {
+      "username": {
+        "viewClass": "SelectView",
+        "model": {
+          "a": "b"
+        }
+      }
+    }
+  },
+  "actions": {
+    "action1": {
+      "main": "../action.js",
+      "title": "action1",
+      "viewClass": "SelectView",
+      "model": "hello",
+      "metadata": {
+        "in": "blah"
+      }
+    }
+  }
+}

@@ -34,7 +34,7 @@ program
 
 program
   .command('cmp:validate', 'Validate component.json, action/trigger files, and any static schemas')
-  .argument('<path>', 'Path to component folder')
+  .argument('[path]', 'Path to component folder', null, process.cwd())
   .action(async (args) => {
     await runValidate(args.path);
   });
