@@ -1,4 +1,4 @@
-exports.process = async function process(msg, cfg) {
+exports.process = async function processAction(msg, cfg) {
   return cfg;
 };
 
