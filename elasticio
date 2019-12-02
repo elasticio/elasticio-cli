@@ -13,11 +13,12 @@ program
 
 program
   .command('cmp:process', 'Run the process function of an action/trigger')
-  .argument('<path>', 'Path to component folder')
-  .argument('[fixture]', 'Fixture to run against')
-  .argument('[action]', 'Name of action/trigger to run')
-  .action(async (args) => {
-    const { path, fixture, action } = args;
+  .argument('[path]', 'Path to component folder,  defaults to current directory', null, process.cwd())
+  .option('-x, --fixture [fixture]', 'Fixture to run against')
+  .option('-a, --action [action]', 'Name of action/trigger to run')
+  .action(async (args, options) => {
+    const { fixture, action } = options;
+    const { path } = args;
     await runProcess(path, fixture, action);
   });
 
