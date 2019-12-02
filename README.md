@@ -143,3 +143,9 @@ The command takes 2 arguments:
   }
 }
 ```
+
+## Use Cases
+
+Running verify credentials: `elasticio cmp:exec [path or current directory] -f verify`
+Running component: `elasticio cmp:process <path>`
+Running component.json validator: `elasticio: cmp:validate [path or current directory]`

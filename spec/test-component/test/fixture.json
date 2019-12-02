@@ -1,0 +1,34 @@
+{
+  "fixtures": {
+    "success": {
+      "msg": {
+        "headers": {},
+        "body": {}
+      },
+      "cfg": {
+        "calendarId": "{{google_calendar_id}}",
+        "oauth": {
+          "expires_in": 3600,
+          "token_type": "Bearer",
+          "refresh_token": "{{google_refresh_token}}",
+          "access_token": "{{google_access_token}}"
+        }
+      },
+      "snapshot": {
+        "timestamp": 1234
+      }
+    },
+    "main": {
+      "cfg": {
+        "key": "hello world",
+        "healthy": ["Get enough sleep", "Drink water", "Go outside"]
+      },
+      "msg": {}
+    },
+    "validCredentials": {
+      "cfg": {
+        "key": "secret"
+      }
+    }
+  }
+}

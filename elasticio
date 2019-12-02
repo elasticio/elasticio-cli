@@ -22,13 +22,15 @@ program
   });
 
 program
-  .command('cmp:exec', 'Run any exposed function from a file')
-  .argument('<path>', 'Path to component folder')
-  .argument('[fixture]', 'Fixture to run against')
-  .argument('[func]', 'Function name to run')
-  .argument('[action]', 'Name of action/trigger to run')
-  .action(async (args) => {
-    const { path, func, fixture, action } = args;
+  .command('cmp:exec', 'Run any exposed function from a file, including verifyCredentials')
+  .argument('[path]', 'Path to component folder,  defaults to current directory', null, process.cwd())
+  .option('-x, --fixture [fixture]', 'Fixture to run against')
+  .option('-f, --function [func]', 'Function name to run')
+  .option('-a, --action [action]', 'Name of action/trigger to run')
+  .action(async (args, options) => {
+    const { fixture, action } = options;
+    const func = options.function;
+    const { path } = args;
     await runExec(path, func, fixture, action);
   });
 
