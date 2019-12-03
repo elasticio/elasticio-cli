@@ -16,7 +16,7 @@
   },
   "actions": {
     "action1": {
-      "main": "../../scope.spec.js",
+      "main": "../../emitter.spec.js",
       "dynamicMetadata": true
     },
     "action2": {

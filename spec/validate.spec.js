@@ -1,8 +1,9 @@
 /* eslint-disable no-plusplus, no-unused-expressions */
 const { expect } = require('chai');
-const { spy } = require('sinon');
+const { spy, stub } = require('sinon');
 const path = require('path');
 const tool = require('../lib/executables/validate');
+const { print } = require('../lib/helpers/log.js');
 
 const assert = {
   info: spy(tool.assert, 'info'),
@@ -11,6 +12,18 @@ const assert = {
 };
 
 describe('Tests for validation runner', () => {
+  before(() => {
+    Object.keys(print).forEach((method) => {
+      stub(print, method).callsFake((msg) => msg);
+    });
+  });
+
+  after(() => {
+    Object.keys(print).forEach((method) => {
+      print[method].restore();
+    });
+  });
+
   beforeEach(() => {
     Object.keys(assert).forEach((key) => { assert[key].resetHistory(); });
   });
