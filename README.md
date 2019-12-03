@@ -107,6 +107,8 @@ GOOGLE_REFRESH_TOKEN=very-secret-refresh-token
 GOOGLE_ACCESS_TOKEN=very-secret-access-token
 ```
 
+If you need to add global variables that are used within your functions, for example `ELASTICIO_EXEC_ID`, add them in a file located at `/test/.globalEnv` and they will be exported and added to `process.env` automatically.
+
 Now that you have a fixture prepared, you can execute your component as shown below.
 
 ````bash
