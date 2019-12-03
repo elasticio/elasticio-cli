@@ -5,3 +5,6 @@ node_modules
 lib-cov
 coverage.html
 /*.png
+
+.nyc_output/
+coverage/

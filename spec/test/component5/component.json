@@ -1,0 +1,30 @@
+{
+  "title": "My component.json",
+  "actions": {
+    "action1": {
+      "main": "../action.js",
+      "description": "newAction",
+      "title": "action1",
+      "viewClass": "TextFieldView",
+      "dynamicMetadata": true
+    }
+  },
+  "triggers": {
+    "action2": {
+      "main": "../action.js",
+      "description": "newAction",
+      "title": "action1",
+      "viewClass": "TextFieldView",
+      "dynamicMetadata": true
+    },
+    "action3": {
+      "main": "../action.js",
+      "description": "newAction",
+      "title": "action1",
+      "viewClass": "TextFieldView",
+      "metadata": {
+        "out": "../schema.json"
+      }
+    }
+  }
+}

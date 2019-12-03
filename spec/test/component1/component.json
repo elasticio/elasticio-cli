@@ -1,0 +1,14 @@
+{
+  "title": "My component.json",
+  "credentials": {
+    "username": {
+      "viewClass": "TextFieldView"
+    }
+  },
+  "triggers": {
+    "action1": {
+      "main": "here",
+      "title": "action1"
+    }
+  }
+}

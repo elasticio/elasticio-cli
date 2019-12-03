@@ -1,0 +1,80 @@
+{
+  "title": "My component.json",
+  "credentials": {
+    "fields": {
+      "username": {
+        "label": "username",
+        "viewClass": "TextFieldView"
+      },
+      "password": {
+        "viewClass": "SelectView"
+      },
+      "API-key": {
+        "label": "key"
+      }
+    }
+  },
+  "actions": {
+    "action1": {
+      "main": "../../scope.spec.js",
+      "dynamicMetadata": true
+    },
+    "action2": {
+      "main": "../action.js",
+      "title": "action2",
+      "description": "action2",
+      "dynamicMetadata": true
+    },
+    "action3": {
+      "main": "../action2.js",
+      "title": "action3",
+      "description": "action3",
+      "dynamicMetadata": true,
+      "fields": {
+        "text": {
+          "label": "hello"
+        },
+        "data": {
+          "label": "hello",
+          "viewClass": "SelectView"
+        },
+        "modelledData": {
+          "label": "hello",
+          "viewClass": "SelectView",
+          "model": "myModel"
+        },
+        "info": {
+          "label": "hello",
+          "viewClass": "TextFieldView"
+        }
+      }
+    },
+    "action4": {
+      "main": "../action3.js",
+      "title": "action4",
+      "description": "action4",
+      "metadata": {}
+    },
+    "action5": {
+      "main": "../action2.js",
+      "title": "action4",
+      "description": "action4",
+      "metadata": {
+        "in": "../schema.json",
+        "out": "../schema.json"
+      }
+    }
+  },
+  "triggers": {
+    "4BADNAME": {
+      "main": "../action.js",
+      "title": "trigger1",
+      "metadata": {}
+    },
+    "trigger2": {
+      "main": "../action3.js",
+      "title": "trigger1",
+      "metadata": {}
+    }
+  }
+}

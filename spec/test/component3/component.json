@@ -1,0 +1,91 @@
+{
+  "title": "My component.json",
+  "credentials": {
+    "fields": {
+      "username": {
+        "viewClass": "SelectView",
+        "model": {
+          "a": "b"
+        }
+      }
+    }
+  },
+  "actions": {
+    "2Bad": {
+      "main": "../action.js",
+      "title": "action1",
+      "description": "description",
+      "viewClass": "SelectView",
+      "model": "hello",
+      "metadata": {
+        "in": "blah"
+      }
+    },
+    "action2": {
+      "main": "../action.js",
+      "title": "action1",
+      "description": "description",
+      "viewClass": "SelectView",
+      "model": { "abc": "def" },
+      "metadata": "../schema.json"
+    },
+    "action3": {
+      "main": "../action.js",
+      "title": "action1",
+      "description": "description",
+      "viewClass": "SelectView",
+      "model": { "abc": "def" },
+      "metadata": {
+        "in": {},
+        "out": {}
+      }
+    },
+    "action4": {
+      "main": "../action.js",
+      "title": "action1",
+      "description": "description",
+      "viewClass": "SelectView",
+      "model": { "abc": "def" },
+      "metadata": {
+        "in": "hello"
+      }
+    },
+    "action5": {
+      "title": "action1",
+      "description": "description",
+      "viewClass": "SelectView",
+      "model": { "abc": "def" },
+      "metadata": {
+        "in": "hello"
+      }
+    },
+    "action6": {
+      "main": "../brokenAction.js",
+      "description": "description",
+      "title": "action1",
+      "viewClass": "SelectView",
+      "model": { "abc": "def" },
+      "metadata": {
+        "in": "hello"
+      }
+    }
+  },
+  "triggers": {
+    "trigger1": {
+      "main": "../action.js",
+      "description": "description",
+      "title": "action1",
+      "viewClass": "SelectView",
+      "model": { "abc": "def" },
+      "metadata": "hello"
+    },
+    "trigger2": {
+      "main": "../action.js",
+      "description": "description",
+      "title": "action1",
+      "viewClass": "SelectView",
+      "model": { "abc": "def" },
+      "metadata": "../schema.json"
+    }
+  }
+}

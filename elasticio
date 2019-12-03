@@ -4,6 +4,7 @@ const program = require('caporal');
 const fs = require('fs');
 const { runProcess } = require('./lib/executables/process');
 const { runExec } = require('./lib/executables/exec');
+const { runValidate } = require('./lib/executables/validate');
 
 const { version } = JSON.parse(fs.readFileSync(`${__dirname}/package.json`, 'utf8'));
 
@@ -29,6 +30,13 @@ program
   .action(async (args) => {
     const { path, func, fixture, action } = args;
     await runExec(path, func, fixture, action);
+  });
+
+program
+  .command('cmp:validate', 'Validate component.json, action/trigger files, and any static schemas')
+  .argument('[path]', 'Path to component folder', null, process.cwd())
+  .action(async (args) => {
+    await runValidate(args.path);
   });
 
 program.parse(process.argv);
