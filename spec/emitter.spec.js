@@ -27,9 +27,10 @@ describe('Emitter tests', () => {
     const info = print.info.getCalls();
     const data = print.data.getCalls();
 
-    expect(info[0].lastArg).to.include('Component returned following message:');
-    expect(info[1].lastArg).to.include('Component returned following snapshot:');
-    expect(info[2].lastArg).to.include('Component execution done');
+    expect(info[0].lastArg).to.include('Component emitted data:');
+    expect(info[1].lastArg).to.include('Component emitted error:');
+    expect(info[2].lastArg).to.include('Component emitted snapshot:');
+    expect(info[3].lastArg).to.include('Component emitted end');
     expect(JSON.parse(data[0].lastArg)).to.be.equal('hello');
     expect(JSON.parse(data[1].lastArg)).to.be.equal('newSnapshot');
 
