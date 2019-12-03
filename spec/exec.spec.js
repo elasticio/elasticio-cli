@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const inquirer = require('inquirer');
 const { runExec } = require('../lib/executables/exec');
-const { print } = require('../lib/helpers/theme.js');
+const { print } = require('../lib/helpers/log.js');
 
 const PATH = './spec/test-component';
 

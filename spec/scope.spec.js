@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const { stub } = require('sinon');
 const { Emitter } = require('../lib/helpers/emitter');
-const { print } = require('../lib/helpers/theme');
+const { print } = require('../lib/helpers/log');
 
 
 describe('Emitter tests', () => {
@@ -27,22 +27,14 @@ describe('Emitter tests', () => {
     const info = print.info.getCalls();
     const data = print.data.getCalls();
 
-  it('Has a logger function', () => {
-    const consoleStub = stub(console, 'log').callsFake((msg) => msg);
-    const emitter = new Emitter();
-    const { logger } = emitter;
-    logger.info('Hello');
-    expect(consoleStub.getCall(0).lastArg).to.be.equal('Info: Hello');
-    logger.debug('Hello');
-    expect(consoleStub.getCall(1).lastArg).to.be.equal('Debug: Hello');
-    logger.error('Hello');
-    expect(consoleStub.getCall(2).lastArg).to.be.equal('Error: Hello');
-    logger.warn('Hello');
-    expect(consoleStub.getCall(3).lastArg).to.be.equal('Warn: Hello');
-    logger.fatal('Hello');
-    expect(consoleStub.getCall(4).lastArg).to.be.equal('Fatal: Hello');
-    logger.trace('Hello');
-    expect(consoleStub.getCall(5).lastArg).to.be.equal('Trace: Hello');
-    consoleStub.restore();
+    expect(info[0].lastArg).to.include('Component returned following message:');
+    expect(info[1].lastArg).to.include('Component returned following snapshot:');
+    expect(info[2].lastArg).to.include('Component execution done');
+    expect(JSON.parse(data[0].lastArg)).to.be.equal('hello');
+    expect(JSON.parse(data[1].lastArg)).to.be.equal('newSnapshot');
+
+    Object.keys(print).forEach((method) => {
+      print[method].resetHistory();
+    });
   });
 });
