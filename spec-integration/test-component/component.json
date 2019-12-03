@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "basicEmit": {
+      "main": "./lib/actions/basicEmit.js"
+    },
+    "manyEmits": {
+      "main": "./lib/actions/manyEmits.js"
+    },
+    "circularJson": {
+      "main": "./lib/actions/circularJson.js"
+    },
+    "bigIntJson": {
+      "main": "./lib/actions/bigIntJson.js"
+    },
+    "invalidEventEmit": {
+      "main": "./lib/actions/invalidEventEmit.js"
+    },
+    "thrownError": {
+      "main": "./lib/actions/thrownError.js"
+    },
+    "manyErrors": {
+      "main": "./lib/actions/manyErrors.js"
+    },
+    "returnData": {
+      "main": "./lib/actions/returnData.js"
+    }
+  }
+}
