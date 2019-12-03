@@ -75,9 +75,15 @@ describe('runProcess', () => {
     expect(emit1[1].message).to.equal('Thrown');
   });
 
-  it('should exit the process function after emitting an error', async () => {
+  it('should emit errors', async () => {
     action = 'manyErrors';
-    await expect(runProcess(COMPONENT_PATH, FIXTURE_KEY, action)).to.eventually.be.rejectedWith('First');
+    await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
+    const emit1 = spy.getCall(0).args;
+    expect(emit1[0]).to.equal('error');
+    expect(emit1[1]).to.equal('First');
+    const emit2 = spy.getCall(1).args;
+    expect(emit2[0]).to.equal('error');
+    expect(emit2[1]).to.equal('Second');
   });
 
   it('should emit return values as data', async () => {
