@@ -100,4 +100,30 @@ describe('runProcess', () => {
       data: 'foobar2',
     });
   });
+
+  it('should run startup, init, process, and shutdown in order', async () => {
+    action = 'allHooks';
+    const consoleSpy = sinon.spy(console, 'debug');
+    await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
+    const debug1 = consoleSpy.getCall(0).args;
+    expect(debug1[0]).to.equal('startup');
+    const debug2 = consoleSpy.getCall(1).args;
+    expect(debug2[0]).to.equal('init');
+    const debug3 = consoleSpy.getCall(2).args;
+    expect(debug3[0]).to.equal('process');
+    const debug4 = consoleSpy.getCall(3).args;
+    expect(debug4[0]).to.equal('shutdown');
+    consoleSpy.restore();
+  });
+
+  it('should pass startup hook return data to shutdown hook', async () => {
+    action = 'startupData';
+    const consoleSpy = sinon.spy(console, 'debug');
+    await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
+    const debug1 = consoleSpy.getCall(0).args;
+    expect(debug1[0]).to.deep.equal({
+      data: 'STARTUP_HOOK',
+    });
+    consoleSpy.restore();
+  });
 });
