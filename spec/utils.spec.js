@@ -1,5 +1,4 @@
 const { expect } = require('chai');
-const fs = require('fs');
 const path = require('path');
 const sinon = require('sinon');
 const utils = require('../lib/helpers/utils');
