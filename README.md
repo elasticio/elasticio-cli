@@ -23,7 +23,7 @@ $ elasticio
 
    COMMANDS
 
-     cmp:process <path> [fixture]           Run the process function of an action/trigger
+     cmp:process <path> [fixture]           Run the startup, init, process, and shutdown function of an action/trigger. Only the process is mandatory
      cmp:exec <path> [func] [fixture]       Run component actions
      help <command>                         Display help for a specific command
 
@@ -53,7 +53,14 @@ elasticio 1.2.0
      [fixture]      Fixture to run against                  optional 
 ````
 
-The only required argument is the `path`, which tells the command where to find the component's action/trigger. This file is expected to export the ``process`` function to be executed.
+The only required argument is the `path`, which tells the command where to find the component's action/trigger. This file is expected to export the ``process`` function to be executed. In addition to `process`, the file can also export a `startup`, `init`, and `shutdown` function, which will run the existing ones the order of `startup`, `init`, `process`, and `shutdown`. The returned data from `startup` is accessible in `shutdown`. The function signatures are:
+
+```javascript
+exports.startup = function startup(cfg) { return startupData; };
+exports.init = function init(cfg) { };
+exports.process = function process(msg, cfg, snapshot) { };
+exports.shutdown = function shutdown(cfg, startupData) { };
+```
 
 ## Fixtures
 Fixtures are used in testing code as a location to store test instances within a codebase.
