@@ -23,6 +23,12 @@
     },
     "returnData": {
       "main": "./lib/actions/returnData.js"
+    },
+    "allHooks": {
+      "main": "./lib/actions/allHooks.js"
+    },
+    "startupData": {
+      "main": "./lib/actions/startupData.js"
     }
   }
 }
