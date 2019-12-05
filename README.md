@@ -74,7 +74,7 @@ Here is a simple example of a fixture file that contains two fixtures. The fixtu
 }
 ```
 
-Your component's configuration may contain sensible data, such as API keys or OAuth tokens. Such data must not be placed inside fixture files because you will push them to your version control system, such as GitHub. Instead they should be replaced by variables using the "{{ [Handlebars](http://handlebarsjs.com/) }}" syntax inside the fixture file. For example:
+Your component's configuration may contain sensitive data, such as API keys or OAuth tokens. Such data must not be placed inside fixture files that may be pushed to a version control system, such as GitHub. Instead they should be replaced by variables using the "{{ [Handlebars](http://handlebarsjs.com/) }}" syntax inside the fixture file. For example:
 
 ````
 "access_token":"{{GOOGLE_ACCESS_TOKEN}}"
