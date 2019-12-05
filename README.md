@@ -51,7 +51,7 @@ This confirms a successful installation.
 
 ## Creating Test Fixtures
 
-A **test fixture** is a test sample that a piece of code should be run against, in JSON format. Every test fixture for the elasticio platform should have a `msg` field and a `cfg` field, at minimum. A `snapshot` field can also be added and used. All test fixtures are stored together in one JSON file. This should be stored in a folder called `test/fixture.json` file, where `test` is a folder stored at the same level as `component.json`.
+A **test fixture** is a JSON test sample that a piece of code should be run against. Every test fixture for the elasticio platform should have a `msg` field and a `cfg` field at minimum. A `snapshot` field can also be included. All test fixtures are stored together in one JSON file, `test/fixture.json`, where `test` is a folder stored at the same level as `component.json`.
 
 Here is a simple example of a fixture file that contains two fixtures. The fixture you would like to use can be selected at runtime.
 
@@ -108,7 +108,7 @@ exports.process = function process(msg, cfg, snapshot) { };
 exports.shutdown = function shutdown(cfg, startupData) { };
 ```
 
-Furthermore, the provided fixture will be initially be checked against its respective `schema`, if the action/trigger has a static schema, for invalid message. This will not impede the running of the `process` action.
+Furthermore, if the action/trigger has a static schema, the provided fixture will be initially be checked against its respective `schema` for an invalid message. This will not impede the running of the `process` action.
 
 The CLI tool will print all details emitted from the `process`, and any values that have been returned before it exits.
 
@@ -126,7 +126,7 @@ To view the help menu for this function, type `elasticio cmp:process -h`.
 
 ## cmp:exec
 
-`cmp:exec` will allow you to run any exported function from an action/trigger that may be used on the platform, or `verifyCredentials` for a given component. For example, this allows you to run the functions `getMetaModel`, and other Select View functions. It can be run from within a component directory, or from outside by providing a path.
+`cmp:exec` will allow you to run `verifyCredentials` and any exported function from an action/trigger that may be used on the platform. For example, this allows you to run the functions `getMetaModel` and other Select View functions. It can be run from within a component directory, or from outside by providing a path.
 
 The CLI tool assumes that exported functions and `verifyCredentials` will have the following signatures:
 
@@ -137,9 +137,9 @@ exports.selectViewFunctions = function selectView(cfg);
 exports.process = function process(msg, cfg, snapshot);
 ```
 
-`getMetaModel` and any Select View function should take the `cfg` as first parameter, as should `verify`. For this function, running `process` will not run it with the startup/shutdown functions, and will run only the selected method in isolation. This can be beneficial for testing purposes.
+`verify`, `getMetaModel`, and any Select View function should take the `cfg` as first parameter. For this function, running `process` will not run it with the startup/shutdown functions, and will run only the selected method in isolation. This can be beneficial for testing purposes.
 
-Before running the function, the provided fixture will be initially be checked against its respective `schema`, if the action/trigger has a static schema, for invalid message. This will not impede the running of the `process` action, and will only occur if `verifyCredentials` is not being run.
+If the action/trigger has a static schema, the provided fixture will be initially be checked against its respective `schema` before running the function for an invalid message. This will not impede the running of the `process` action, and will only occur if `verifyCredentials` is not being run.
 
 ### Flags
 
@@ -148,7 +148,7 @@ Before running the function, the provided fixture will be initially be checked a
 - -f, --function: the name of the function to run against (optional)
 - -a, --action: name of action/trigger to run (optional)
 
-If, both the function name `verify` and an action name are provided, the `verify` will override and the CLI will run `verifyCredentials`.
+If both the function name `verify` and an action name are provided, the `verify` will override and the CLI will run `verifyCredentials`.
 
 ### Examples
 `> elasticio cmp:exec [path or current directory] -f verify` => will run `verifyCredentials`
