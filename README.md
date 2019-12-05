@@ -1,5 +1,16 @@
 # Elasticio CLI Tool
+## Table of Contents
+- [Installation](#Installation)
+- [Creating Test Fixtures](#Creating-Test-Fixtures)
+- [Commands](#Commands)
+  - [cmp:process](#cmp:process)
+  - [cmp:exec](#cmp:exec)
+  - [cmp:validate](#cmp:validate)
+- [Other Information](#Other-Information)
+
+
 ## Installation
+To install this tool, run:
 
 ````bash
 npm install elasticio-cli -g
@@ -36,24 +47,59 @@ $ elasticio
      -v, --verbose      Verbose mode - will also output debug messages
 ````
 
-## Running Actions/Triggers locally
+This confirms a successful installation.
 
-Executing an action/trigger process on your local machine is accomplished by ``elasticio cmp:process`` command. For any command, running it with the `-h` or `--help` command provides instructions on how to run it. For example, if you execute that command `elasticio cmp:process -h` you should see following output:
+## Creating Test Fixtures
 
-````bash
-elasticio 1.2.0 
+A **test fixture** is a test sample that a piece of code should be run against, in JSON format. Every test fixture for the elasticio platform should have a `msg` field and a `cfg` field, at minimum. A `snapshot` field can also be added and used. All test fixtures are stored together in one JSON file. This should be stored in a folder called `test/fixture.json` file, where `test` is a folder stored at the same level as `component.json`.
 
-   USAGE
+Here is a simple example of a fixture file that contains two fixtures. The fixture you would like to use can be selected at runtime.
 
-     elasticio cmp:process <path> [fixture]
+```JSON
+{
+  "fixtures": {
+    "successfulFixture": {
+      "cfg": {},
+      "msg": {
+        "body": {}
+      }
+    },
+    "failFixture": {
+      "cfg": {},
+      "msg": {
+        "body": {}
+      }
+    }
+  }
+}
+```
 
-   ARGUMENTS
+Your component's configuration may contain sensible data, such as API keys or OAuth tokens. Such data must not be placed inside fixture files because you will push them to your version control system, such as GitHub. Instead they should be replaced by variables using the "{{ [Handlebars](http://handlebarsjs.com/) }}" syntax inside the fixture file. For example:
 
-     <path>         Path to file with process function      required 
-     [fixture]      Fixture to run against                  optional 
+````
+"access_token":"{{GOOGLE_ACCESS_TOKEN}}"
 ````
 
-The only required argument is the `path`, which tells the command where to find the component's action/trigger. This file is expected to export the ``process`` function to be executed. In addition to `process`, the file can also export a `startup`, `init`, and `shutdown` function, which will run the existing ones the order of `startup`, `init`, `process`, and `shutdown`. The returned data from `startup` is accessible in `shutdown`. The function signatures are:
+The variable values will be taken from the `.env` file of your component, which should be in the same folder as `component.json`.
+
+```bash
+GOOGLE_CALENDAR_ID=fubar@acme.org
+GOOGLE_REFRESH_TOKEN=very-secret-refresh-token
+GOOGLE_ACCESS_TOKEN=very-secret-access-token
+```
+
+# Commands
+
+## cmp:process
+
+Executing an action/trigger process locally will typically use the `cmp:process` command. Running
+
+```bash
+elasticio cmp:process
+```
+will immediately launch you into this process, and run the command on the directory you are currently located in. To run the command in a different directory, add an optional [path] after the command.
+
+While running this command, you will supply an action/trigger linked to a file. This file is required to export a ``process`` function, which will be executed. In addition to `process`, the file can also export `startup`, `init`, and `shutdown` functions. If they exist, they will run in the order  `startup` => `init` => `process` => `shutdown`; identical to the platform. The returned data from `startup` is accessible in `shutdown`. The function signatures are:
 
 ```javascript
 exports.startup = function startup(cfg) { return startupData; };
@@ -62,99 +108,83 @@ exports.process = function process(msg, cfg, snapshot) { };
 exports.shutdown = function shutdown(cfg, startupData) { };
 ```
 
-## Fixtures
-Fixtures are used in testing code as a location to store test instances within a codebase.
+Furthermore, the provided fixture will be initially be checked against its respective `schema`, if the action/trigger has a static schema, for invalid message. This will not impede the running of the `process` action.
 
-For example, the ``process(msg, cfg)`` function takes at least 2 parameters:
+The CLI tool will print all details emitted from the `process`, and any values that have been returned before it exits.
 
-* msg: the message to be process by the component
-* cfg: component's configuration
+### Flags
 
-In order to execute your component, we need to know what parameters to pass to its ``process`` function. This is what the fixtures are for.
+`cmp:process` takes two optional flags:
+- -x, --fixture: fixture name to run against (optional)
+- -a, --action: name of action/trigger to run (optional)
 
-Fixtures are defined in a file ``test/fixture.json`` whereby the ``test`` folder is is expected to be located in the root of the component directory, i.e. in the same location as `component.json`.
+To view the help menu for this function, type `elasticio cmp:process -h`.
 
-A `fixtures.json` file has a root fixtures object, and then one or more defined fixtures. Below is an example file:
+### Examples
 
-````json
-{
-    "fixtures":{
-        "success":{
-            "msg":{
-                "headers":{},
-                "body":{}
-            },
-            "cfg":{
-                "calendarId":"{{GOOGLE_CALENDAR_ID}}",
-                "oauth":{
-                    "expires_in":3600,
-                    "token_type":"Bearer",
-                    "refresh_token":"{{GOOGLE_REFRESH_TOKEN}}",
-                    "access_token":"{{GOOGLE_ACCESS_TOKEN}}"
-                }
-            }
-        }
-    }
-}
-````
+`> elasticio cmp:process -x success -a lookupObject`
 
-The content of the file is a JSON object with a single key ``fixtures`` which contains named fixtures. Each fixture defines arguments to be passed to component's _process_ function: a message and configuration objects. 
+### Limitations
+None at the moment
 
-The only fixture in example above is named _success_. Please note that the  component's configuration may contain sensible data, such as API keys or OAuth tokens. Such data must not be placed inside fixture files because you will push them to your version control system, such as GitHub. Instead they should be replaced by variables using the [Handlebars](http://handlebarsjs.com/) syntax:
+## cmp:exec
 
-````
-"access_token":"{{google_access_token}}"
-````
+`cmp:exec` will allow you to run any exported function from an action/trigger that may be used on the platform, or `verifyCredentials` for a given component. For example, this allows you to run the functions `getMetaModel`, and other Select View functions. It can be run from within a component directory, or from outside by providing a path.
 
-The variable values will be taken from the `.env` file stored in your component, in the same folder as `component.json`.
+The CLI tool assumes that exported functions and `verifyCredentials` will have the following signatures:
+
+```javascript
+exports.verify = async function verify(cfg, optional callback); // found in verifyCredentials.js
+exports.getMetaModel = function getMetaModel(cfg);
+exports.selectViewFunctions = function selectView(cfg);
+exports.process = function process(msg, cfg, snapshot);
+```
+
+`getMetaModel` and any Select View function should take the `cfg` as first parameter, as should `verify`. For this function, running `process` will not run it with the startup/shutdown functions, and will run only the selected method in isolation. This can be beneficial for testing purposes.
+
+Before running the function, the provided fixture will be initially be checked against its respective `schema`, if the action/trigger has a static schema, for invalid message. This will not impede the running of the `process` action, and will only occur if `verifyCredentials` is not being run.
+
+### Flags
+
+`cmp:exec` takes three optional flags:
+- -x, --fixture: fixture name to run against (optional)
+- -f, --function: the name of the function to run against (optional)
+- -a, --action: name of action/trigger to run (optional)
+
+If, both the function name `verify` and an action name are provided, the `verify` will override and the CLI will run `verifyCredentials`.
+
+### Examples
+`> elasticio cmp:exec [path or current directory] -f verify` => will run `verifyCredentials`
+
+### Known Limitations
+Running shutdown functions will not currently take any startup data, since it is run in isolation.
+
+## cmp:validate
+
+`cmp:validate` will run validation on your `component.json` file and print results to the terminal. It will validate numerous aspects of the file, including:
+- each action/trigger has all the valid fields needed
+- each action/trigger file exports the necessary functions
+- all view types provided are valid
+- all schema and metadata files are valid
+- there is no duplication of action/trigger names and each name is valid
+- credentials are valid and not missing any required fields
+
+### Flags
+No flags are supported at the moment
+
+### Example
+`> elasticio cmp:validate [path or current directory]`
+
+### Known Limitations
+There is currently no way to toggle on/off certain error messages/warnings.
+
+## Other Information
+If your action/trigger requires global variables, such as those listed in the [documentation](https://support.elastic.io/support/solutions/articles/14000039613-env-vars-available-during-component-execution), these should be added to a file beside `fixtures.json` in the test directory called `.globalEnv`, and treated similar to an `.env` file.
+
+For example:
 
 ```bash
-GOOGLE_CALENDAR_ID=fubar@acme.org
-GOOGLE_REFRESH_TOKEN=very-secret-refresh-token
-GOOGLE_ACCESS_TOKEN=very-secret-access-token
+ELASTICIO_TASK_ID=baf9042hig1mlks13gbpej
 ```
 
-If you need to add global variables that are used within your functions, for example `ELASTICIO_EXEC_ID`, add them in a file located at `/test/.globalEnv` and they will be exported and added to `process.env` automatically.
-
-Now that you have a fixture prepared, you can execute your component as shown below.
-
-````bash
-  elasticio cmp:process lib/hello_world/hello.js success
-````
-
-The command takes 2 arguments:
-* path to the component's file exporting the _process_ function
-* fixture name to be used for component execution (optional)
-
-## Template Fixture File
-
-```json
-{
-  "fixtures": {
-    "example": {
-      "cfg": {
-        ...
-      },
-      "msg": {
-        "body": {
-          ...
-        }
-      }
-    },
-    "example2": {
-      "cfg": {
-        ...
-      },
-      "msg": {
-        ...
-      }
-    }
-  }
-}
-```
-
-## Use Cases
-
-Running verify credentials: `elasticio cmp:exec [path or current directory] -f verify`
-Running component: `elasticio cmp:process <path>`
-Running component.json validator: `elasticio: cmp:validate [path or current directory]`
+These will be loaded into `process.env` at runtime.
