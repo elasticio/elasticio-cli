@@ -124,9 +124,6 @@ To view the help menu for this function, type `elasticio cmp:process -h`.
 
 `> elasticio cmp:process -x success -a lookupObject`
 
-### Limitations
-None at the moment
-
 ## cmp:exec
 
 `cmp:exec` will allow you to run any exported function from an action/trigger that may be used on the platform, or `verifyCredentials` for a given component. For example, this allows you to run the functions `getMetaModel`, and other Select View functions. It can be run from within a component directory, or from outside by providing a path.
