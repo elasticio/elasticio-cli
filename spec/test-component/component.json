@@ -1,31 +1,31 @@
 {
   "actions": {
-    "basicEmit": {
-      "main": "./lib/actions/basicEmit.js"
-    },
     "bigAction": {
-      "main": "./lib/actions/bigAction.js"
+      "main": "./lib/actions/bigAction.js",
+      "metadata": {
+        "in": "./lib/schemas/bigAction.in.json",
+        "out": "./lib/schemas/bigAction.out.json"
+      }
     },
-    "manyEmits": {
-      "main": "./lib/actions/manyEmits.js"
+    "action2": {
+      "metadata": "./lib/schemas/action2.json"
     },
-    "circularJson": {
-      "main": "./lib/actions/circularJson.js"
+    "action3": {
+      "metadata": {
+        "in": {
+          "type": "string",
+          "enum": ["garlic", "onion", "potato"]
+        },
+        "out": {
+          "type": "string"
+        }
+      }
     },
-    "bigIntJson": {
-      "main": "./lib/actions/bigIntJson.js"
+    "action4": {
+      "dynamicMetadata": true
     },
-    "invalidEventEmit": {
-      "main": "./lib/actions/invalidEventEmit.js"
-    },
-    "thrownError": {
-      "main": "./lib/actions/thrownError.js"
-    },
-    "manyErrors": {
-      "main": "./lib/actions/manyErrors.js"
-    },
-    "returnData": {
-      "main": "./lib/actions/returnData.js"
+    "action5": {
+      "metadata": "./fakeFile.json"
     }
   }
 }

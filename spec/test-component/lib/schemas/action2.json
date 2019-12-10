@@ -1,0 +1,9 @@
+{
+  "in": {
+    "type": "string",
+    "enum": ["garlic", "onion", "potato"]
+  },
+  "out": {
+    "type": "string"
+  }
+}
