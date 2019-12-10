@@ -106,6 +106,16 @@ describe('runProcess', () => {
     await expect(runProcess(COMPONENT_PATH, FIXTURE_KEY, action)).to.eventually.be.rejectedWith('Overlapping emit calls are not allowed!');
   });
 
+  it('should retain global variables modified from the startup/init hooks', async () => {
+    action = 'globalVariables';
+    await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
+    const emit1 = spy.getCall(0).args;
+    expect(emit1[0]).to.equal('data');
+    expect(emit1[1]).to.deep.equal({
+      gv: ['Startup modified global variable', 'Init modified global variable'],
+    });
+  });
+
   it('should run startup, init, process, and shutdown in order', async () => {
     action = 'allHooks';
     const consoleSpy = sinon.spy(console, 'debug');

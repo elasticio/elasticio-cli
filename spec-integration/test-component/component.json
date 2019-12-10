@@ -27,6 +27,9 @@
     "overlappingEmits": {
       "main": "./lib/actions/overlappingEmits.js"
     },
+    "globalVariables": {
+      "main": "./lib/actions/globalVariables.js"
+    },
     "allHooks": {
       "main": "./lib/actions/allHooks.js"
     },
