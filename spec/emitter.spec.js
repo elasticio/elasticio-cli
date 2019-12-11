@@ -17,13 +17,13 @@ describe('Emitter tests', () => {
     });
   });
 
-  it('Has an emitter function', () => {
+  it('Has an emitter function', async () => {
     const emitter = new Emitter();
     expect(typeof emitter.emit).to.be.equal('function');
-    emitter.emit('data', 'hello');
-    emitter.emit('error', 'this is an error');
-    emitter.emit('snapshot', 'newSnapshot');
-    emitter.emit('end');
+    await emitter.emit('data', 'hello');
+    await emitter.emit('error', 'this is an error');
+    await emitter.emit('snapshot', 'newSnapshot');
+    await emitter.emit('end');
     const info = print.info.getCalls();
     const data = print.data.getCalls();
 

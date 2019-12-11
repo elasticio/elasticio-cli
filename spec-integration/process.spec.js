@@ -101,6 +101,11 @@ describe('runProcess', () => {
     });
   });
 
+  it('should throw when overlapping emit calls are made', async () => {
+    action = 'overlappingEmits';
+    await expect(runProcess(COMPONENT_PATH, FIXTURE_KEY, action)).to.eventually.be.rejectedWith('Overlapping emit calls are not allowed!');
+  });
+
   it('should run startup, init, process, and shutdown in order', async () => {
     action = 'allHooks';
     const consoleSpy = sinon.spy(console, 'debug');

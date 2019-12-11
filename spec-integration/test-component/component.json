@@ -24,6 +24,9 @@
     "returnData": {
       "main": "./lib/actions/returnData.js"
     },
+    "overlappingEmits": {
+      "main": "./lib/actions/overlappingEmits.js"
+    },
     "allHooks": {
       "main": "./lib/actions/allHooks.js"
     },
