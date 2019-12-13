@@ -23,7 +23,7 @@ describe('runProcess', () => {
   it('should run a basic process that emits', async () => {
     action = 'basicEmit';
     await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
-    const emit1 = spy.getCall(0).args;
+    const emit1 = spy.firstCall.args;
     expect(emit1[0]).to.equal('data');
     expect(emit1[1]).to.deep.equal({
       prop: 'foobar',
@@ -33,17 +33,17 @@ describe('runProcess', () => {
   it('should run a process that has many emits', async () => {
     action = 'manyEmits';
     await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
-    const emit1 = spy.getCall(0).args;
+    const emit1 = spy.firstCall.args;
     expect(emit1[0]).to.equal('data');
     expect(emit1[1]).to.deep.equal({
       prop1: 'foobar1',
     });
-    const emit2 = spy.getCall(1).args;
+    const emit2 = spy.secondCall.args;
     expect(emit2[0]).to.equal('snapshot');
     expect(emit2[1]).to.deep.equal({
       timestamp1: 123,
     });
-    const emit3 = spy.getCall(2).args;
+    const emit3 = spy.thirdCall.args;
     expect(emit3[0]).to.equal('data');
     expect(emit3[1]).to.deep.equal({
       prop2: 'foobar2',
@@ -70,7 +70,7 @@ describe('runProcess', () => {
   it('should emit a thrown error', async () => {
     action = 'thrownError';
     await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
-    const emit1 = spy.getCall(0).args;
+    const emit1 = spy.firstCall.args;
     expect(emit1[0]).to.equal('error');
     expect(emit1[1].message).to.equal('Thrown');
   });
@@ -78,10 +78,10 @@ describe('runProcess', () => {
   it('should emit errors', async () => {
     action = 'manyErrors';
     await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
-    const emit1 = spy.getCall(0).args;
+    const emit1 = spy.firstCall.args;
     expect(emit1[0]).to.equal('error');
     expect(emit1[1]).to.equal('First');
-    const emit2 = spy.getCall(1).args;
+    const emit2 = spy.secondCall.args;
     expect(emit2[0]).to.equal('error');
     expect(emit2[1]).to.equal('Second');
   });
@@ -89,12 +89,12 @@ describe('runProcess', () => {
   it('should emit return values as data', async () => {
     action = 'returnData';
     await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
-    const emit1 = spy.getCall(0).args;
+    const emit1 = spy.firstCall.args;
     expect(emit1[0]).to.equal('data');
     expect(emit1[1]).to.deep.equal({
       prop: 'foobar',
     });
-    const emit2 = spy.getCall(1).args;
+    const emit2 = spy.secondCall.args;
     expect(emit2[0]).to.equal('data');
     expect(emit2[1]).to.deep.equal({
       data: 'foobar2',
@@ -106,15 +106,25 @@ describe('runProcess', () => {
     await expect(runProcess(COMPONENT_PATH, FIXTURE_KEY, action)).to.eventually.be.rejectedWith('Overlapping emit calls are not allowed!');
   });
 
+  it('should retain global variables modified from the startup/init hooks', async () => {
+    action = 'globalVariables';
+    await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
+    const emit1 = spy.firstCall.args;
+    expect(emit1[0]).to.equal('data');
+    expect(emit1[1]).to.deep.equal({
+      gv: ['Startup modified global variable', 'Init modified global variable'],
+    });
+  });
+
   it('should run startup, init, process, and shutdown in order', async () => {
     action = 'allHooks';
     const consoleSpy = sinon.spy(console, 'debug');
     await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
-    const debug1 = consoleSpy.getCall(0).args;
+    const debug1 = consoleSpy.firstCall.args;
     expect(debug1[0]).to.equal('startup');
-    const debug2 = consoleSpy.getCall(1).args;
+    const debug2 = consoleSpy.secondCall.args;
     expect(debug2[0]).to.equal('init');
-    const debug3 = consoleSpy.getCall(2).args;
+    const debug3 = consoleSpy.thirdCall.args;
     expect(debug3[0]).to.equal('process');
     const debug4 = consoleSpy.getCall(3).args;
     expect(debug4[0]).to.equal('shutdown');
@@ -125,7 +135,7 @@ describe('runProcess', () => {
     action = 'startupData';
     const consoleSpy = sinon.spy(console, 'debug');
     await runProcess(COMPONENT_PATH, FIXTURE_KEY, action);
-    const debug1 = consoleSpy.getCall(0).args;
+    const debug1 = consoleSpy.firstCall.args;
     expect(debug1[0]).to.deep.equal({
       data: 'STARTUP_HOOK',
     });
