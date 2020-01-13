@@ -10,7 +10,7 @@
 
 
 ## Installation
-To install this tool, run:
+In order to use this tool, you must have Node v12 (or higher) installed. To install this tool, run:
 
 ````bash
 npm install elasticio-cli -g

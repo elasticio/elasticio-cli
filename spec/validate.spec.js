@@ -151,7 +151,7 @@ describe('Tests for validation runner', () => {
       "trigger 'trigger2' is missing OUT metadata",
       'Invalid action names: ["2Bad"]. Names for triggers/actions must begin with a letter. They are case sensitive and may contain letters, digits  and underscores.',
       "no file defined for action 'action5'. Please add a file to continue testing",
-      "Error in action file 'action6', found at C:\\Users\\Hannah Bulmer\\elasticio-cli\\spec\\test\\component3\n"
+      `Error in action file 'action6', found at ${path.resolve(__dirname, './test/component3')}\n`
         + '      \t\t => ReferenceError: hello is not defined\n'
         + '      \tplease resolve this error to complete testing',
       'Schema trigger1 located at hello does not exist',
