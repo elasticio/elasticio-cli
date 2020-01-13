@@ -3,8 +3,7 @@
   "description": "Command-line interface for elastic.io components",
   "version": "2.0.0",
   "engines": {
-    "npm": ">= 10",
-    "node": ">= 10"
+    "node": ">= 12"
   },
   "scripts": {
     "test": "mocha spec/.",
