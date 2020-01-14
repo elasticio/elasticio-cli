@@ -21,7 +21,7 @@ describe('Tests for exec', () => {
   });
   const inquirerStub = sinon.stub(inquirer, 'prompt').callsFake(async (question) => {
     const answer = {};
-    if (question.name === 'select') answer.select = 'action';
+    if (question.name === 'select') answer.select = null;
     if (question.name === 'action') answer.action = 'bigAction';
     if (question.name === 'function') answer.function = 'process';
     if (question.name === 'fixture') answer.fixture = 'main';
