@@ -35,13 +35,6 @@ describe('Tests for util functions', () => {
       expect(errors[1].lastArg).to.be.equal('\tinstance is not of a type(s) number');
     });
 
-    it('Runs schemas for metadata as a file', () => {
-      utils.validateFixture(COMPONENT_PATH, fixture, 'action2');
-      const info = print.info.getCalls();
-      expect(info.length).to.be.equal(1);
-      expect(info[0].lastArg).to.be.equal('Fixture successfully validated against schema');
-    });
-
     it('Runs schemas for metadata hardcoded to component.json', () => {
       utils.validateFixture(COMPONENT_PATH, fixture, 'action3');
       const info = print.info.getCalls();
@@ -56,8 +49,8 @@ describe('Tests for util functions', () => {
       expect(info[0].lastArg).to.be.equal('Dynamic schema; not performing any schema validation');
     });
 
-    it('Prints an error but keeps going when schema files haven\'t been found', async () => {
-      utils.validateFixture(COMPONENT_PATH, fixture, 'action5');
+    it('Produces an error when schema files haven\'t been found', async () => {
+      expect(utils.validateFixture.bind({}, COMPONENT_PATH, fixture, 'action5')).to.throw();
       const errors = print.error.getCalls();
       expect(errors.length).to.be.equal(1);
       expect(errors[0].lastArg).to.be.equal('Schema file ./fakeFile.json missing');

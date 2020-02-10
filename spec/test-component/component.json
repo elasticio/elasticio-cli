@@ -7,9 +7,6 @@
         "out": "./lib/schemas/bigAction.out.json"
       }
     },
-    "action2": {
-      "metadata": "./lib/schemas/action2.json"
-    },
     "action3": {
       "metadata": {
         "in": {
@@ -25,7 +22,10 @@
       "dynamicMetadata": true
     },
     "action5": {
-      "metadata": "./fakeFile.json"
+      "metadata": {
+        "in": "./fakeFile.json",
+        "out": "./fakeFile.json"
+      }
     }
   }
 }
