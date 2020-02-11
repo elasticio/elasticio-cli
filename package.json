@@ -6,8 +6,8 @@
     "node": ">= 12"
   },
   "scripts": {
-    "test": "mocha spec/.",
-    "coverage": "nyc --reporter=html --reporter=text mocha spec/."
+    "test": "mocha spec/. spec-integration/.",
+    "coverage": "nyc --reporter=html --reporter=text mocha spec/. spec-integration/."
   },
   "bin": {
     "elasticio": "./elasticio"
