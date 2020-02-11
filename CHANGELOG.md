@@ -5,10 +5,10 @@
 `TBD`
 
 ### General Changes
-* Use `vm` in process.js
 * Fix some broken tests
 * Require Node 12 in package.json
 * Hard exit on invalid input from command line
+* Fixed metadata validation logic
 
 
 ## 2.0.0 (Dec 11, 2019)

@@ -46,7 +46,7 @@ describe('Tests for util functions', () => {
       utils.validateFixture(COMPONENT_PATH, fixture, 'action4');
       const info = print.info.getCalls();
       expect(info.length).to.be.equal(1);
-      expect(info[0].lastArg).to.be.equal('Dynamic schema; not performing any schema validation');
+      expect(info[0].lastArg).to.be.equal('Dynamic schema for action4; not performing any schema validation');
     });
 
     it('Produces an error when schema files haven\'t been found', async () => {
