@@ -9,7 +9,9 @@
 * Require Node 12 in package.json
 * Hard exit on invalid input from command line
 * Fixed metadata validation logic in process
-
+* Throw errors when attempting to render prompts in non-interactive
+  environments.
+* Add option for more verbose logging on uncaught exceptions
 
 ## 2.0.0 (Dec 11, 2019)
 
