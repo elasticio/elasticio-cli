@@ -1,8 +1,8 @@
-## 2.1.0 (TBD)
+## 2.1.0 (Feb 24, 2000)
 
 ### Commit Version
 
-`TBD`
+`a61a5646a10a6bd8ee3274e2c3f3b4a3382bc060`
 
 ### General Changes
 * Fix some broken tests
