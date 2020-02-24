@@ -1,15 +1,17 @@
 # Elasticio CLI Tool
 ## Table of Contents
-- [Installation](#Installation)
-- [Creating Test Fixtures](#Creating-Test-Fixtures)
-- [Commands](#Commands)
-  - [cmp:process](#cmp:process)
-  - [cmp:exec](#cmp:exec)
-  - [cmp:validate](#cmp:validate)
-- [Other Information](#Other-Information)
+- [Installation](#installation)
+- [Creating Test Fixtures](#creating-test-fixtures)
+- [Commands](#commands)
+  * [cmp:process](#cmpprocess)
+  * [cmp:exec](#cmpexec)
+  * [cmp:validate](#cmpvalidate)
+- [Other Information](#other-information)
+  * [Environment Variables](#environment-variables)
+  * [Use in Visual Studio Code](#use-in-visual-studio-code)
 
 
-## Installation
+# Installation
 In order to use this tool, you must have Node v12 (or higher) installed. To install this tool, run:
 
 ````bash
@@ -49,7 +51,7 @@ $ elasticio
 
 This confirms a successful installation.
 
-## Creating Test Fixtures
+# Creating Test Fixtures
 
 A **test fixture** is a JSON test sample that a piece of code should be run against. Every test fixture for the elasticio platform should have a `msg` field and a `cfg` field at minimum. A `snapshot` field can also be included. All test fixtures are stored together in one JSON file, `test/fixture.json`, where `test` is a folder stored at the same level as `component.json`.
 
@@ -175,7 +177,8 @@ No flags are supported at the moment
 ### Known Limitations
 There is currently no way to toggle on/off certain error messages/warnings.
 
-## Other Information
+# Other Information
+## Environment Variables
 If your action/trigger requires global variables, such as those listed in the [documentation](https://support.elastic.io/support/solutions/articles/14000039613-env-vars-available-during-component-execution), these should be added to a file beside `fixtures.json` in the test directory called `.globalEnv`, and treated similar to an `.env` file.
 
 For example:
@@ -185,3 +188,31 @@ ELASTICIO_TASK_ID=baf9042hig1mlks13gbpej
 ```
 
 These will be loaded into `process.env` at runtime.
+
+## Use in Visual Studio Code
+It is possible to configure Microsoft Visual Studio Code so that when you are editing a component, pressing `F5` on an action/trigger file will cause `cmp:process` to be evaluated against that file.  In order to do so, one can create a `launch.json` file at the root folder for the component.  The `launch.json` should look like the following:
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "execute EIO CLI",
+            "console": "integratedTerminal",
+            "outputCapture": "std",
+            "args": [
+                "<Path to elasticio - can be learned from through `which elasticio`>",
+                "cmp:process",
+                "-x",
+                "<name of fixture in ./test/fixture.json>",
+                "-a",
+                "${fileBasenameNoExtension}"
+             ]
+        }
+    ]
+}
+``` 
+If the `console` argument is omitted, then not all log statements will be rendered.  If the `console` argument is set to `internalConsole`, then all log statements will appear though the terminal will not be interactive and colors will not be rendered.  If the `console` argument is set to `integratedTerminal` then all log statement will appear and be colorized.  The terminal will be interactive for any prompts that are required.
+
+When running the cli from the prompt within MS VS Code version `1.42.1`, then prompts should be interactive for most terminals (e.g. `bash`, `powershell`, `cmd`).

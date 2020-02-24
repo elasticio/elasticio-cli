@@ -12,6 +12,7 @@
 * Throw errors when attempting to render prompts in non-interactive
   environments.
 * Add option for more verbose logging on uncaught exceptions
+* Add remarks to the documentation about VS Code.
 
 ## 2.0.0 (Dec 11, 2019)
 
