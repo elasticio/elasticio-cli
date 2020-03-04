@@ -7,8 +7,7 @@
   },
   "scripts": {
     "test": "mocha spec/. spec-integration/.",
-    "coverage": "nyc --reporter=html --reporter=text mocha spec/. spec-integration/.",
-    "postinstall": "echo 'Object.assign(exports, require(\"./packages/inquirer/lib/inquirer\"));' > node_modules/inquirer/index.js"
+    "coverage": "nyc --reporter=html --reporter=text mocha spec/. spec-integration/."
   },
   "bin": {
     "elasticio": "./elasticio"
@@ -19,7 +18,7 @@
     "chalk": "3.0.0",
     "dotenv": "8.2.0",
     "handlebars": "4.5.3",
-    "inquirer": "git://github.com/elasticio/Inquirer.js#707b235136dde68e07a6d0e371cf4b28db42f047",
+    "inquirer": "7.0.6",
     "jsonschema": "1.2.5",
     "lodash": "4.17.15",
     "properties-parser": "0.3.1"
