@@ -3,8 +3,8 @@ require('dotenv').config();
 const chai = require('chai');
 chai.use(require('chai-as-promised'));
 const sinon = require('sinon');
-const { Emitter } = require('../lib/helpers/emitter');
-const { runProcess } = require('../lib/executables/process');
+const { Emitter } = require('../lib/component/helpers/emitter');
+const { runProcess } = require('../lib/component/executables/process');
 
 const { expect } = chai;
 

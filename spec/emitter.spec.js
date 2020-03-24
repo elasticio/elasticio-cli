@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const { stub } = require('sinon');
-const { Emitter } = require('../lib/helpers/emitter');
-const { print } = require('../lib/helpers/log');
+const { Emitter } = require('../lib/component/helpers/emitter');
+const { print } = require('../lib/component/helpers/log');
 
 
 describe('Emitter tests', () => {
