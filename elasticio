@@ -7,6 +7,7 @@ const { runExec } = require('./lib/component/executables/exec');
 const { runValidate } = require('./lib/component/executables/validate');
 
 const { testConfig } = require('./lib/flowManagement/executables/testConfig');
+const { snapshotWorkspace } = require('./lib/flowManagement/executables/snapshotWorkspace');
 
 const { version } = JSON.parse(fs.readFileSync(`${__dirname}/package.json`, 'utf8'));
 
@@ -15,7 +16,7 @@ program
 
 // Make winston logger bunyan compatible
 const logger = program.logger();
-logger.trace = logger.silly;
+logger.trace = logger.debug;
 
 program
   .command('cmp:process', 'Run the startup, init, process, and shutdown function of an action/trigger. Only the process is mandatory')
@@ -52,5 +53,12 @@ program
   .command('api:testConfig', 'Verify that the configuration in the provided .env file is valid.')
   .option('-c, --configFile [path]', '.env file to use for API key information. Defaults to environment variables and then ~/.integration-platform-cli-config.env if omitted.')
   .action(testConfig);
+
+program
+    .command('api:snapshotWorkspace', 'Extract all the flows and related sample data to the current folder.')
+    .argument('[workspaceId]', 'ID of the workspace to extract.')
+    .argument('[path]', 'Path to extract files to (defaults to current directory)', null, process.cwd())
+    .option('-c, --configFile [path]', '.env file to use for API key information. Defaults to environment variables and then ~/.integration-platform-cli-config.env if omitted.')
+    .action(snapshotWorkspace);
 
 program.parse(process.argv);

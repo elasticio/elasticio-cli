@@ -21,6 +21,7 @@
     "dotenv-extended": "2.7.1",
     "expand-tilde": "2.0.2",
     "handlebars": "4.5.3",
+    "hjson": "3.2.1",
     "inquirer": "7.1.0",
     "jsonschema": "1.2.5",
     "lodash": "4.17.15",
