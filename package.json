@@ -6,13 +6,14 @@
     "node": ">= 12"
   },
   "scripts": {
+    "pretest": "eslint lib spec spec-integration elasticio.js --fix --ignore-pattern spec-integration/test-component/ --ignore-pattern spec/test/",
     "test": "mocha spec/. spec-integration/.",
     "coverage": "nyc --reporter=html --reporter=text mocha spec/. spec-integration/."
   },
   "bin": {
-    "elasticio": "./elasticio"
+    "elasticio": "./elasticio.js"
   },
-  "main": "./lib/elasticio.js",
+  "main": "./elasticio.js",
   "dependencies": {
     "caporal": "git://github.com/elasticio/Caporal.js#92c446e74edb3e489985292604f24dc56a64f205",
     "chalk": "3.0.0",
