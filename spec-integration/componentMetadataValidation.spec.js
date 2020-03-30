@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const sinon = require('sinon');
 const utils = require('../lib/component/helpers/utils');
-const {print} = require('../lib/component/helpers/log');
+const { print } = require('../lib/component/helpers/log');
 
 const COMPONENT_PATH = path.resolve(__dirname, './temp-test-component');
 

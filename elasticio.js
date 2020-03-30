@@ -56,19 +56,19 @@ program
   .action(testConfig);
 
 program
-    .command('api:snapshotWorkspace', 'Extract all the flows and related sample data to the current folder.')
-    .argument('[workspaceId]', 'ID of the workspace to extract.')
-    .argument('[path]', 'Path to extract files to (defaults to current directory)', null, process.cwd())
-    .option('-c, --configFile [path]', '.env file to use for API key information. Defaults to environment variables and then ~/.integration-platform-cli-config.env if omitted.')
-    .action(snapshotWorkspace);
+  .command('api:snapshotWorkspace', 'Extract all the flows and related sample data to the current folder.')
+  .argument('[workspaceId]', 'ID of the workspace to extract.')
+  .argument('[path]', 'Path to extract files to (defaults to current directory)', null, process.cwd())
+  .option('-c, --configFile [path]', '.env file to use for API key information. Defaults to environment variables and then ~/.integration-platform-cli-config.env if omitted.')
+  .action(snapshotWorkspace);
 
 program
-    .command('api:applyFlowsToWorkspace', 'Take all flows in the given directory and apply them to the workspace.')
-    .argument('[workspaceId]', 'ID of the workspace to apply flows to.')
-    .argument('[path]', 'Path of folder with files to (defaults to current directory)', null, process.cwd())
-    .option('-m, --matchType', 'Logic to match files to existing flows.  Options are: \'id\' (default) or \'name\'',
-        ['id', 'name'], 'id')
-    .option('-c, --configFile [path]', '.env file to use for API key information. Defaults to environment variables and then ~/.integration-platform-cli-config.env if omitted.')
-    .action(applyFlowsToWorkspace);
+  .command('api:applyFlowsToWorkspace', 'Take all flows in the given directory and apply them to the workspace.')
+  .argument('[workspaceId]', 'ID of the workspace to apply flows to.')
+  .argument('[path]', 'Path of folder with files to (defaults to current directory)', null, process.cwd())
+  .option('-m, --matchType', 'Logic to match files to existing flows.  Options are: \'id\' (default) or \'name\'',
+    ['id', 'name'], 'id')
+  .option('-c, --configFile [path]', '.env file to use for API key information. Defaults to environment variables and then ~/.integration-platform-cli-config.env if omitted.')
+  .action(applyFlowsToWorkspace);
 
 program.parse(process.argv);
