@@ -6,9 +6,9 @@
     "node": ">= 12"
   },
   "scripts": {
-    "pretest": "eslint lib spec spec-integration elasticio.js --fix --ignore-pattern spec-integration/test-component/ --ignore-pattern spec/test/",
-    "test": "mocha spec/. spec-integration/.",
-    "coverage": "nyc --reporter=html --reporter=text mocha spec/. spec-integration/."
+    "pretest": "eslint lib spec spec-integration elasticio.js --fix --ignore-pattern spec-integration/component/test-component/ --ignore-pattern spec/component/test/",
+    "test": "mocha spec/** spec-integration/**",
+    "coverage": "nyc --reporter=html --reporter=text mocha spec/** spec-integration/**"
   },
   "bin": {
     "elasticio": "./elasticio.js"

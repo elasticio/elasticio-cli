@@ -2,8 +2,8 @@
 const { expect } = require('chai');
 const { spy, stub } = require('sinon');
 const path = require('path');
-const tool = require('../lib/component/executables/validate');
-const { print } = require('../lib/component/helpers/log.js');
+const tool = require('../../lib/component/executables/validate');
+const { print } = require('../../lib/component/helpers/log.js');
 
 const assert = {
   info: spy(tool.assert, 'info'),

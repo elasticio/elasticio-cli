@@ -3,12 +3,12 @@ require('dotenv').config();
 const chai = require('chai');
 chai.use(require('chai-as-promised'));
 const sinon = require('sinon');
-const { Emitter } = require('../lib/component/helpers/emitter');
-const { runProcess } = require('../lib/component/executables/process');
+const { Emitter } = require('../../lib/component/helpers/emitter');
+const { runProcess } = require('../../lib/component/executables/process');
 
 const { expect } = chai;
 
-const COMPONENT_PATH = 'spec-integration/test-component';
+const COMPONENT_PATH = 'spec-integration/component/test-component';
 const FIXTURE_KEY = 'success';
 let action = '';
 

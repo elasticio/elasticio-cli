@@ -2,10 +2,10 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const inquirer = require('inquirer');
-const { runExec } = require('../lib/component/executables/exec');
-const { print } = require('../lib/component/helpers/log.js');
+const { runExec } = require('../../lib/component/executables/exec');
+const { print } = require('../../lib/component/helpers/log.js');
 
-const PATH = './spec/test-component';
+const PATH = './spec/component/test-component';
 
 describe('Tests for exec', () => {
   before(() => {
