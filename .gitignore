@@ -9,3 +9,5 @@ coverage.html
 
 .nyc_output/
 coverage/
+*.env
+*.env.json
