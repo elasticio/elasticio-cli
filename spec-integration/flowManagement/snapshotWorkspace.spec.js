@@ -7,7 +7,6 @@ const { snapshotWorkspace } = require('../../lib/flowManagement/executables/snap
 
 const logger = Logger.getLogger();
 
-
 if (fs.existsSync('.env')) {
   // eslint-disable-next-line global-require
   require('dotenv').config();
