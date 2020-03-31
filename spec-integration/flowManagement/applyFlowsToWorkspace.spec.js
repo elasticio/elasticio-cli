@@ -1,8 +1,8 @@
-const { expect } = require('chai');
 const fs = require('fs');
 const { Logger } = require('@elastic.io/component-commons-library');
 
 const { applyFlowsToWorkspace } = require('../../lib/flowManagement/executables/applyFlowsToWorkspace');
+const { snapshotWorkspace } = require('../../lib/flowManagement/executables/snapshotWorkspace');
 const { loadApiConfig } = require('../../lib/flowManagement/helpers/loadApiConfig');
 
 const logger = Logger.getLogger();
@@ -13,14 +13,15 @@ if (fs.existsSync('.env')) {
 }
 
 const contractId = '5e81f351f926af23f2d72290';
+const sampleExtractFolder = 'tmp/integrationTestExtract';
 
 describe('Apply Flow to Workspace Tests', function applyFlowToWorkspaceTests() {
-  this.timeout(10000);
+  this.timeout(120000);
+  const client = loadApiConfig(logger);
+  let workspaceId;
 
-  it('Create Workspace and Apply Flows', async () => {
-    const client = loadApiConfig(logger);
-
-    const workspaceId = (await client.makeRequest({
+  beforeEach(async () => {
+    workspaceId = (await client.makeRequest({
       method: 'POST',
       url: '/workspaces',
       body: {
@@ -40,7 +41,18 @@ describe('Apply Flow to Workspace Tests', function applyFlowToWorkspaceTests() {
         },
       },
     })).data.id;
+    fs.mkdirSync(sampleExtractFolder, { recursive: true });
+  });
 
+  afterEach(async () => {
+    await client.makeRequest({
+      method: 'DELETE',
+      url: `/workspaces/${workspaceId}`,
+    });
+    fs.rmdirSync(sampleExtractFolder, { recursive: true });
+  });
+
+  it('Create Workspace and Apply Flows', async () => {
     // Create needed credentials
     await client.makeRequest({
       method: 'POST',
@@ -177,9 +189,24 @@ describe('Apply Flow to Workspace Tests', function applyFlowToWorkspaceTests() {
       matchType: 'name',
     }, logger);
 
-    await client.makeRequest({
-      method: 'DELETE',
-      url: `/workspaces/${workspaceId}`,
-    });
+    // Start flows
+    const flowIds = (await client.fetchAllFlowsFromWorkspace(workspaceId)).map((flow) => flow.id);
+    await Promise.all(flowIds.map(async (flowId) => {
+      await client.makeRequest({
+        method: 'POST',
+        url: `/flows/${flowId}/start`,
+      });
+    }));
+
+    await snapshotWorkspace({
+      workspaceId,
+      path: sampleExtractFolder,
+    }, {}, logger);
+    await applyFlowsToWorkspace({
+      workspaceId,
+      path: sampleExtractFolder,
+    }, {
+      matchType: 'id',
+    }, logger);
   });
 });
