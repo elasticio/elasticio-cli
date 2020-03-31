@@ -27,12 +27,12 @@
     "jsonschema": "1.2.5",
     "lodash": "4.17.15",
     "properties-parser": "0.3.1",
-    "remove-trailing-slash": "^0.1.0"
+    "remove-trailing-slash": "0.1.0"
   },
   "devDependencies": {
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "dir-compare": "^2.2.0",
+    "dir-compare": "2.2.0",
     "eslint": "6.7.2",
     "eslint-config-airbnb-base": "14.0.0",
     "eslint-plugin-import": "2.18.2",
