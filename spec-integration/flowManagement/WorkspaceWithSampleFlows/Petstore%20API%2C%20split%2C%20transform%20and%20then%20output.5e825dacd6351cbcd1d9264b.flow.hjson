@@ -1,0 +1,201 @@
+{
+  api_version: "2.0"
+  default_mapper_type: jsonata
+  description: ""
+  graph:
+  {
+    edges:
+    [
+      {
+        id: step_1:step_4
+        source: step_1
+        target: step_4
+      }
+      {
+        id: step_4:step_3
+        source: step_4
+        target: step_3
+      }
+      {
+        id: step_3:step_7
+        source: step_3
+        target: step_7
+      }
+      {
+        config:
+        {
+          condition: $contains($.category.name, "cats")
+        }
+        id: step_3:step_9
+        source: step_3
+        target: step_9
+      }
+      {
+        config:
+        {
+          condition: $contains($.category.name, "dogs")
+        }
+        id: step_3:step_8
+        source: step_3
+        target: step_8
+      }
+    ]
+    nodes:
+    [
+      {
+        command: help/petstore:getPetsByStatusWithGenerators@latest
+        component_id: 5a26a1d1103597001975bee3
+        credentials_id: 5e824cf1d6351c24ddd79981
+        description: ""
+        fields:
+        {
+          status: available
+        }
+        id: step_1
+        name: Petstore API (Node.js)
+      }
+      {
+        command: elasticio/splitter:splitOnJsonataExpression@latest
+        component_id: 591ec808f7cba10019284fe5
+        description: ""
+        fields:
+        {
+          expression: $.pets
+        }
+        id: step_4
+        name: Split each pet out
+      }
+      {
+        command: elasticio/router:route@latest
+        component_id: 5968b3c594cbb000199f2adc
+        description: ""
+        id: step_3
+        name: Route based on type of Pet
+        service: router
+      }
+      {
+        command: elasticio/rest-api-component:httpRequestAction@latest
+        component_id: 59df8d792081010019391f81
+        credentials_id: 5e824d73d6351c6214d7a48a
+        description: ""
+        fields:
+        {
+          followRedirect: followRedirects
+          reader:
+          {
+            auth:
+            {
+              basic:
+              {
+                password: ""
+                username: ""
+              }
+            }
+            body:
+            {
+              contentType: application/json
+              formData: []
+              raw: '''"here is the full payload: " & $'''
+              urlencoded: []
+            }
+            headers:
+            [
+              {
+                frozen: true
+                key: Content-Type
+                value: '''"application/json"'''
+              }
+            ]
+            method: POST
+            url: '''"https://webhook.site/f88c868c-ee72-4f7b-b331-767926fbb933"'''
+          }
+        }
+        id: step_7
+        name: Other to Webhook.site
+      }
+      {
+        command: elasticio/rest-api-component:httpRequestAction@latest
+        component_id: 59df8d792081010019391f81
+        credentials_id: 5e824d73d6351c6214d7a48a
+        description: https://webhook.site/
+        fields:
+        {
+          followRedirect: followRedirects
+          reader:
+          {
+            auth:
+            {
+              basic:
+              {
+                password: ""
+                username: ""
+              }
+            }
+            body:
+            {
+              contentType: application/json
+              formData: []
+              raw: '''"This is a word"'''
+              urlencoded: []
+            }
+            headers:
+            [
+              {
+                frozen: true
+                key: Content-Type
+                value: '''"application/json"'''
+              }
+            ]
+            method: POST
+            url: '''"https://webhook.site/f88c868c-ee72-4f7b-b331-767926fbb933"'''
+          }
+        }
+        id: step_8
+        name: Dogs to Webhook.site
+      }
+      {
+        command: elasticio/rest-api-component:httpRequestAction@latest
+        component_id: 59df8d792081010019391f81
+        credentials_id: 5e824d73d6351c6214d7a48a
+        description: https://webhook.site/
+        fields:
+        {
+          followRedirect: followRedirects
+          reader:
+          {
+            auth:
+            {
+              basic:
+              {
+                password: ""
+                username: ""
+              }
+            }
+            body:
+            {
+              contentType: application/json
+              formData: []
+              raw: $uppercase($.elasticio.step_4.body.name) & " is a cat and the time is " & $now()
+              urlencoded: []
+            }
+            headers:
+            [
+              {
+                frozen: true
+                key: Content-Type
+                value: '''"application/json"'''
+              }
+            ]
+            method: POST
+            url: '''"https://webhook.site/f88c868c-ee72-4f7b-b331-767926fbb933"'''
+          }
+        }
+        id: step_9
+        name: Cats to Webhook.site
+      }
+    ]
+  }
+  name: Petstore API, split, transform and then output
+  nodes_config: {}
+  type: ordinary
+}

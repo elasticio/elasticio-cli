@@ -1,0 +1,73 @@
+{
+  api_version: "2.0"
+  default_mapper_type: jsonata
+  description: ""
+  graph:
+  {
+    edges:
+    [
+      {
+        id: step_1:step_2
+        source: step_1
+        target: step_2
+      }
+    ]
+    nodes:
+    [
+      {
+        command: elasticio/webhook:receive@latest
+        component_id: 55ba18e35d04040500000004
+        credentials_id: 5e82638ad6351cd105d9d51f
+        description: Call the webhook from Postman, the body of the request should be the example data from here: http://try.jsonata.org/S1sYVNMwG
+        fields:
+        {
+          payload: "{}"
+        }
+        id: step_1
+        name: ""
+      }
+      {
+        command: elasticio/rest-api-component:httpRequestAction@latest
+        component_id: 59df8d792081010019391f81
+        credentials_id: 5e824d73d6351c6214d7a48a
+        description: "The incoming data is transformed based on a JSONata function: http://try.jsonata.org/S1sYVNMwG "
+        fields:
+        {
+          reader:
+          {
+            auth:
+            {
+              basic:
+              {
+                password: ""
+                username: ""
+              }
+            }
+            body:
+            {
+              contentType: application/json
+              formData: []
+              raw: '''{ "order": $.Account.Order.{ "customer_account": $$.Account.`Account Name`, "order_number": $uppercase(OrderID), "grand_total": $sum(Product.Price), "total_quantity": $sum(Product.Quantity), "total_weight": $sum(Product.Description.Weight), "line_items":$.Product. { "product_code": "AB" & SKU, "product_name": `Product Name`, "product_description": `Product Name` & " (" & $.Description.Colour& ")", "item_price": Price, "line_total": Quantity } }}'''
+              urlencoded: []
+            }
+            headers:
+            [
+              {
+                frozen: true
+                key: Content-Type
+                value: '''"application/json"'''
+              }
+            ]
+            method: POST
+            url: '''"https://webhook.site/f88c868c-ee72-4f7b-b331-767926fbb933"'''
+          }
+        }
+        id: step_2
+        name: Parse and Create Order
+      }
+    ]
+  }
+  name: Webhook, transform and then Output
+  nodes_config: {}
+  type: ordinary
+}

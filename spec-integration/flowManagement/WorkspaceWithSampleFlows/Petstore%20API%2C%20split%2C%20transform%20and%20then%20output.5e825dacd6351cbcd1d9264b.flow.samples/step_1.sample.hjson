@@ -1,0 +1,194 @@
+{
+  method: getPetsByStatusWithGenerators
+  result:
+  {
+    attachments: {}
+    body:
+    {
+      pets:
+      [
+        {
+          category:
+          {
+            id: 1
+            name: dogs
+          }
+          id: 1
+          name: Brownie
+          status: available
+        }
+        {
+          category:
+          {
+            id: 1
+            name: dogs
+          }
+          id: 2
+          name: Doggie
+          status: available
+        }
+        {
+          category:
+          {
+            id: 1
+            name: dogs
+          }
+          id: 3
+          name: Fluffy
+          status: available
+        }
+        {
+          category:
+          {
+            id: 1
+            name: dogs
+          }
+          id: 4
+          name: Toffy
+          status: available
+        }
+        {
+          category:
+          {
+            id: 2
+            name: cats
+          }
+          id: 5
+          name: Rambo
+          status: available
+        }
+        {
+          category:
+          {
+            id: 1
+            name: dods
+          }
+          id: 6
+          name: Attila
+          status: available
+        }
+        {
+          category:
+          {
+            id: 1
+            name: dogs
+          }
+          id: 7
+          name: Rocky
+          status: available
+        }
+        {
+          category:
+          {
+            id: 2
+            name: cats
+          }
+          id: 8
+          name: Cattie
+          status: available
+        }
+      ]
+    }
+    headers: {}
+    id: ffa3ffde-1800-41b5-90b9-01eef0513e4d
+    metadata: {}
+    passthrough:
+    {
+      step_1:
+      {
+        attachments: {}
+        body:
+        {
+          pets:
+          [
+            {
+              category:
+              {
+                id: 1
+                name: dogs
+              }
+              id: 1
+              name: Brownie
+              status: available
+            }
+            {
+              category:
+              {
+                id: 1
+                name: dogs
+              }
+              id: 2
+              name: Doggie
+              status: available
+            }
+            {
+              category:
+              {
+                id: 1
+                name: dogs
+              }
+              id: 3
+              name: Fluffy
+              status: available
+            }
+            {
+              category:
+              {
+                id: 1
+                name: dogs
+              }
+              id: 4
+              name: Toffy
+              status: available
+            }
+            {
+              category:
+              {
+                id: 2
+                name: cats
+              }
+              id: 5
+              name: Rambo
+              status: available
+            }
+            {
+              category:
+              {
+                id: 1
+                name: dods
+              }
+              id: 6
+              name: Attila
+              status: available
+            }
+            {
+              category:
+              {
+                id: 1
+                name: dogs
+              }
+              id: 7
+              name: Rocky
+              status: available
+            }
+            {
+              category:
+              {
+                id: 2
+                name: cats
+              }
+              id: 8
+              name: Cattie
+              status: available
+            }
+          ]
+        }
+        headers: {}
+        id: ffa3ffde-1800-41b5-90b9-01eef0513e4d
+        metadata: {}
+        stepId: step_1
+      }
+    }
+    stepId: step_1
+  }
+}

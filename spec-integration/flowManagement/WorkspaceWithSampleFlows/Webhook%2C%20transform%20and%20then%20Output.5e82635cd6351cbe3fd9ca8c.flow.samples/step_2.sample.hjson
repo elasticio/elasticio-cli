@@ -1,0 +1,25 @@
+{
+  method: httpRequestAction
+  result:
+  {
+    body: {}
+    headers: {}
+    id: 877b8307-3ea9-4577-a72b-67ff7c6345a6
+    metadata: {}
+    passthrough:
+    {
+      step_1:
+      {
+        body: {}
+      }
+      step_2:
+      {
+        body: {}
+        headers: {}
+        id: 877b8307-3ea9-4577-a72b-67ff7c6345a6
+        metadata: {}
+      }
+    }
+    stepId: step_2
+  }
+}
