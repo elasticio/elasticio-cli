@@ -61,6 +61,8 @@ program
   .command('api:snapshotWorkspace', 'Extract all the flows and related sample data to the current folder.')
   .argument('[workspaceId]', 'ID of the workspace to extract.')
   .argument('[path]', 'Path to extract files to (defaults to current directory)', null, process.cwd())
+  .option('-m, --matchType', 'Logic to match files to existing flows.  Options are: \'id\' (default) or \'name\'',
+    ['id', 'name'], 'id')
   .option('-c, --configFile [path]', '.env file to use for API key information. Defaults to environment variables and then ~/.integration-platform-cli-config.env if omitted.')
   .action(snapshotWorkspace);
 
